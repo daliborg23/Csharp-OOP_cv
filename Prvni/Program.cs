@@ -13,7 +13,11 @@ namespace Prvni {
             //Prvni4.Prvni4.Mainx();
             //Prvni5.Prvni5.Mainx();
             //Prvni5b.Prvni5b.Mainx();
-            Prvni6.Prvni6.Mainx();
+            //Prvni6.Prvni6.Mainx();
+            //Prvni7.Prvni7.Mainx();
+            //Prvni8.Prvni8.Mainx();
+            //Prvni9.Prvni9.Mainx();
+            Prvni10.Prvni10.Mainx();
         }
     }
 }

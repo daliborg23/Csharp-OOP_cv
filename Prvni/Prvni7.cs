@@ -6,9 +6,11 @@ using System;
 using Prvni1;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 
-namespace Prvni6;
-class Prvni6 {
+namespace Prvni7;
+class Prvni7 {
     public static void Mainx() {
         Student s1 = new Student(18, 10000);
         Accountant a1 = new Accountant(22, 25000);
@@ -28,6 +30,9 @@ class Person {
     public virtual void writeInfo() {
         Console.WriteLine("Vek: " + age);
     }
+    public virtual void info() {
+        Console.WriteLine("Vek: " + age);
+    }
 }
 class Employee : Person {
     public int salary;
@@ -35,7 +40,8 @@ class Employee : Person {
     }
     public Employee(int age, int salary) : base(age) {
         this.salary = salary;
-    }   
+    }
+    Person p = new Person();
     public override void writeInfo() {
         base.writeInfo();
         Console.WriteLine("Plat: " + salary);
@@ -49,6 +55,8 @@ class Student : Person {
     public override void writeInfo() {
         base.writeInfo();
         Console.WriteLine("Stipendium: " + scholarship);
+        //base.info();
+        //info();
     }
 }
 class Accountant : Employee {
@@ -65,16 +73,19 @@ class Teacher : Employee {
         this.teachingTime = teachingTime;
     }
 
-    public new void writeInfo() {
+    public override void writeInfo() {
         base.writeInfo();
         Console.WriteLine("Oduceny cas: " + teachingTime);
     }
 }
 
-//Přidání metody writeInfo() do nadřazené třídy(kap.Překrývání - úvod)
-//Stále jsou neefektivně naprogramovány metody writeInfo.V případě, že by třídy měly desítky shodných datových složek,
-//tak by měly zbytečně desítky shodných řádků.Hierarchie by se tedy dala použít i pro metodu writeInfo(). Nadřazené třídy Person a Employee by měly zajistit výpis datových složek,
-//které jsou v nich deklarovány (age, resp.salary). Takže ve třídě Student pak stačí, když metoda writeInfo() zavolá stejnojmennou metodu z nadřazené třídy
-//(base.writeInfo()) a pak sama navíc vypíše už jen scholarship.Obdobně tato metoda ve třídě Employee navíc vypíše salary a v třídě Teacher úvazkové hodiny.
-//Ověřte, že příkaz base.writeInfo() nemusí být v metodě první.
-//Co by se stalo, kdybychom prefix base neuvedli? Kompilátoru by to nevadilo, při běhu by se však program „zauzloval“, ohlásil by stackOverflowError.Proč?
+//7. Demonstrace rozdílu ve volání překryté a nepřekryté metody(kap.Překrývání/Mod. virtual, override, new)
+//Zkopírujte ve třídě Person metodu writeInfo(). Kopii nazvěte jen info(). V metodě writeInfo() třídy Student tuto metodu zavolejte
+//(takže se vlastně dvakrát volá totéž). Je nutno použít při volání také base.info() nebo stačí jen info()?
+//Připomínám, že se ze Studenta volají dvě metody v třídě Person(tedy v nadřazené, bázové třídě). U metody writeInfo() se base musí použít
+//(jinak volá stejnojmennou metodu v třídě Student). Musí se base použít i u info()?
+//V dalších etapách již metodu info() nebudeme používat.
+//
+// Druhý krok: Podíváme-li se na seznam Warning, vidíme, že kompilátor si není jistý, zda k překrytí metody writeInfo došlo úmyslně.
+// Proto přidáme před překrývanou metodu ve třídě Person klíčové slovo virtual. Tím dáme najevo, že s překrytím počítáme.
+// U překrývajících metod přidáme klíčové slovo override, tím dáme najevo, že překrýváme úmyslně.

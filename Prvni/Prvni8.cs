@@ -6,9 +6,12 @@ using System;
 using Prvni1;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Reflection.Metadata;
 
-namespace Prvni6;
-class Prvni6 {
+namespace Prvni8;
+class Prvni8 {
     public static void Mainx() {
         Student s1 = new Student(18, 10000);
         Accountant a1 = new Accountant(22, 25000);
@@ -16,17 +19,22 @@ class Prvni6 {
         s1.writeInfo();
         a1.writeInfo();
         t1.writeInfo();
+        Student s2 = new Student();
+        s2.writeInfo();
     }
 }
 class Person {
     public int age;
+    static int count;
     public Person() {
+        //count++;
     }
     public Person(int age) {
         this.age = age;
+        count++;
     }
     public virtual void writeInfo() {
-        Console.WriteLine("Vek: " + age);
+        Console.WriteLine("Vek: " + age + "     Pocet instanci: " + count);
     }
 }
 class Employee : Person {
@@ -35,7 +43,8 @@ class Employee : Person {
     }
     public Employee(int age, int salary) : base(age) {
         this.salary = salary;
-    }   
+    }
+    Person p = new Person();
     public override void writeInfo() {
         base.writeInfo();
         Console.WriteLine("Plat: " + salary);
@@ -43,6 +52,8 @@ class Employee : Person {
 }
 class Student : Person {
     public int scholarship;
+    public Student() {
+    }
     public Student(int age, int scholarship) : base(age) {
         this.scholarship = scholarship;
     }
@@ -65,16 +76,14 @@ class Teacher : Employee {
         this.teachingTime = teachingTime;
     }
 
-    public new void writeInfo() {
+    public override void writeInfo() {
         base.writeInfo();
         Console.WriteLine("Oduceny cas: " + teachingTime);
     }
 }
 
-//Přidání metody writeInfo() do nadřazené třídy(kap.Překrývání - úvod)
-//Stále jsou neefektivně naprogramovány metody writeInfo.V případě, že by třídy měly desítky shodných datových složek,
-//tak by měly zbytečně desítky shodných řádků.Hierarchie by se tedy dala použít i pro metodu writeInfo(). Nadřazené třídy Person a Employee by měly zajistit výpis datových složek,
-//které jsou v nich deklarovány (age, resp.salary). Takže ve třídě Student pak stačí, když metoda writeInfo() zavolá stejnojmennou metodu z nadřazené třídy
-//(base.writeInfo()) a pak sama navíc vypíše už jen scholarship.Obdobně tato metoda ve třídě Employee navíc vypíše salary a v třídě Teacher úvazkové hodiny.
-//Ověřte, že příkaz base.writeInfo() nemusí být v metodě první.
-//Co by se stalo, kdybychom prefix base neuvedli? Kompilátoru by to nevadilo, při běhu by se však program „zauzloval“, ohlásil by stackOverflowError.Proč?
+//8. Doplnění statické proměnné s počtem instancí(kap.Modifikátor Static)
+//Třídu Person doplníme o statickou datovou složku count(tedy počet). V konstruktoru ji inkrementujeme.Doplníme její výpis do metody writeInfo() v třídě Person.
+//Doplňte v třídě Student konstruktor bez parametru (snippet ctor-TAB-TAB), musí existovat i bezparametrický konstruktor třídy Person.V hlavním programu vytvořte dalšího studenta,
+//tentokrát bez parametrů.Také pro něj spusťte výpis writeInfo(). Je údaj o počtu osob správně? neni
+
