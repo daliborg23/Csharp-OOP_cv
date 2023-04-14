@@ -15,8 +15,13 @@ class Prvni2 {
         t1.writeInfo();
     }
 }
-class Student {
+class Person {
     public int age;
+}
+class Employee : Person {
+    public int salary;
+}
+class Student : Person {
     public int scholarship;
     public Student(int age, int scholarship) {
         this.age = age;
@@ -27,9 +32,7 @@ class Student {
         Console.WriteLine($"Vek: {age} Stipendium: {scholarship} PODRUHE"); //argument prikazoveho radku
     }
 }
-class Accountant {
-    public int age;
-    public int salary;
+class Accountant : Employee {
     public Accountant (int age, int salary) {
         this.age = age;
         this.salary = salary;
@@ -38,9 +41,7 @@ class Accountant {
         Console.WriteLine("Vek: " + age + " Plat: " + salary);
     }
 }
-class Teacher {
-    public int age;
-    public int salary;
+class Teacher : Employee {
     public int teachingTime;
     public Teacher (int age, int salary, int teachingTime) {
         this.age = age;
