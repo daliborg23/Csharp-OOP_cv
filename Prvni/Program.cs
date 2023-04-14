@@ -8,8 +8,8 @@ namespace Prvni {
     internal class Program {
         static void Main(string[] args) {
             //Prvni1.Prvni.Mainx();
-            Prvni2.Prvni2.Mainx();
-
+            //Prvni2.Prvni2.Mainx();
+            Prvni3.Prvni3.Mainx();
         }
     }
 }

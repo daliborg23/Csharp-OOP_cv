@@ -4,19 +4,24 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Drawing;
 using System;
 
-namespace Prvni2;
-class Prvni2 {
+namespace Prvni3;
+class Prvni3 {
     public static void Mainx() {
         Student s1 = new Student(18, 10000);
         Accountant a1 = new Accountant(22, 25000);
-        Teacher t1 = new Teacher(33,35000,12);
+        Teacher t1 = new Teacher(33, 35000, 12);
         s1.writeInfo();
         a1.writeInfo();
         t1.writeInfo();
     }
 }
-class Student {
+class Person {
     public int age;
+}
+class Employee : Person {
+    public int salary;
+}
+class Student : Person {
     public int scholarship;
     public Student(int age, int scholarship) {
         this.age = age;
@@ -27,10 +32,8 @@ class Student {
         Console.WriteLine($"Vek: {age} Stipendium: {scholarship} PODRUHE"); //argument prikazoveho radku
     }
 }
-class Accountant {
-    public int age;
-    public int salary;
-    public Accountant (int age, int salary) {
+class Accountant : Employee {
+    public Accountant(int age, int salary) {
         this.age = age;
         this.salary = salary;
     }
@@ -38,11 +41,9 @@ class Accountant {
         Console.WriteLine("Vek: " + age + " Plat: " + salary);
     }
 }
-class Teacher {
-    public int age;
-    public int salary;
+class Teacher : Employee {
     public int teachingTime;
-    public Teacher (int age, int salary, int teachingTime) {
+    public Teacher(int age, int salary, int teachingTime) {
         this.age = age;
         this.salary = salary;
         this.teachingTime = teachingTime;
