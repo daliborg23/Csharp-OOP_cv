@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Prvni {
     internal class Program {
         static void Main(string[] args) {
-            Prvni1.Prvni.Mainx();
-            
+            //Prvni1.Prvni.Mainx();
+            Prvni2.Prvni2.Mainx();
+
         }
     }
 }
