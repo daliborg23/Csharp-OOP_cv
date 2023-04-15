@@ -1,98 +1,76 @@
-﻿using Prvni;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Drawing;
-using System;
-using Prvni1;
-using System.Threading.Tasks;
-using System.IO;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Reflection.Metadata;
-using System.Net.NetworkInformation;
-
-namespace Prvni10;
-class Prvni10 {
-    public static void Mainx() {
-        Student s1 = new Student(18, 10000);
-        Accountant a1 = new Accountant(22, 25000);
-        Teacher t1 = new Teacher(33, 35000, 41);
-        s1.writeInfo();
-        a1.writeInfo();
-        t1.writeInfo();
-        //Student s2 = new Student();
+﻿namespace Prvni10 {
+    class Prvni10 {
+        public static void Mainx() {
+            Student s1 = new Student(18, 10000);
+            Accountant a1 = new Accountant(22, 25000);
+            Teacher t1 = new Teacher(33, 35000, 33);
+            s1.writeInfo();
+            a1.writeInfo();
+            t1.writeInfo();
+            Console.WriteLine("Pocet osob: " + Person.getCount() + ", vek: " + t1.age);
+        }
     }
-}
-abstract class Person {
-    private int age;
-    protected static int count;
-    public int getCount() {
-        return count;
+    abstract class Person {
+        public int age;
+        private static int count;
+        public Person() {
+            count++;
+        }
+        public Person(int age) {
+            this.age = age;
+            count++;
+        }
+        public static int getCount() {
+            return count;
+        }
+        public abstract void writeInfo();
+        //    {
+        //      base.writeInfo();
+        //    Console.WriteLine("Vek: " + age + "     Pocet instanci: " + getCount() + "      Vek getterem: " + getAge());
+        //}
     }
-    public int getAge() {
-        return age;
+    abstract class Employee : Person {
+        private int salary;
+        public Employee() {
+        }
+        public Employee(int age, int salary) : base(age) {
+            this.salary = salary;
+        }
+        public override void writeInfo() {
+            //base.writeInfo();
+            Console.Write("Pocet osob: " + Person.getCount() + ", vek: " + age);
+            Console.Write(", Plat: " + salary);
+        }
     }
-    public void setAge(int age) {
-        this.age = age;
+    class Student : Person {
+        public int scholarship;
+        public Student() { }
+        public Student(int age, int scholarship) : base(age) {
+            this.scholarship = scholarship;
+        }
+        public override void writeInfo() {
+            //base.writeInfo();
+            Console.Write("Pocet osob: " + Person.getCount() + ", vek: " + age);
+            Console.WriteLine(", Stipendium: " + scholarship);
+        }
     }
-    public Person() {
-        //count++;
+    class Accountant : Employee {
+        public Accountant(int age, int salary) : base(age, salary) {
+        }
+        public override void writeInfo() {
+            base.writeInfo();
+            Console.WriteLine();
+        }
     }
-    public Person(int age) {
-        this.age = age;
-        count++;
-    }
-    abstract public void writeInfo();
-    //    {
-    //      base.writeInfo();
-    //    Console.WriteLine("Vek: " + age + "     Pocet instanci: " + getCount() + "      Vek getterem: " + getAge());
-    //}
-}
-abstract class Employee : Person {
-    private int salary;
-    public Employee() {
-    }
-    public Employee(int age, int salary) : base(age) {
-        this.salary = salary;
-    }
-    public override void writeInfo() {
-        //base.writeInfo();
-        Console.WriteLine(getAge());
-        Console.WriteLine("Plat: " + salary);
-        //Console.WriteLine("Vek: " + getAge() + " Pocet: " + getCount());
-    }
-}
-class Student : Person {
-    public int scholarship;
-    public Student() {
-    }
-    public Student(int age, int scholarship) : base(age) {
-        this.scholarship = scholarship;
-    }
-    public override void writeInfo() {
-        //base.writeInfo();
-        Console.WriteLine(getAge());
-        Console.WriteLine("Stipendium: " + scholarship);
-    }
-}
-class Accountant : Employee {
-    public Accountant(int age, int salary) : base(age, salary) {
-    }
-    public override void writeInfo() {
-        //base.writeInfo();
-        Console.WriteLine(getAge());
-        //Console.WriteLine("Vek: " + age + " Plat: " + salary + " - Accountant");
-    }
-}
-class Teacher : Employee {
-    private int teachingTime;
-    public Teacher(int age, int salary, int teachingTime) : base(age, salary) {
-        this.teachingTime = teachingTime;
-    }
-    public override void writeInfo() {
-        //base.writeInfo();
-        Console.WriteLine(getAge());
-        Console.WriteLine("Oduceny cas: " + teachingTime);
+    class Teacher : Employee {
+        private int teachingTime;
+        public Teacher(int age, int salary, int teachingTime) : base(age, salary) {
+            this.teachingTime = teachingTime;
+        }
+        public override void writeInfo() {
+            base.writeInfo();
+            Console.WriteLine(", Oduceny cas: " + teachingTime);
+        }
     }
 }
 //10. Změna třídy Person na abstraktní(kap.Třída a metoda typu abstract)

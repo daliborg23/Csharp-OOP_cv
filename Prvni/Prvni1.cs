@@ -1,54 +1,48 @@
-﻿using Prvni;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Drawing;
-using System;
-
-namespace Prvni1;
-class Prvni {
-    public static void Mainx() {
-        Student s1 = new Student { //objektova inicializace
-            age = 18,
-            scholarship = 10000,
-        };
-        Accountant a1 = new Accountant {
-            age = 22,
-            salary = 25000
-        };
-        Teacher t1 = new Teacher {
-            age = 33,
-            salary = 35000,
-            teachingTime = 12
-        };        
-        s1.writeInfo();
-        a1.writeInfo();
-        t1.writeInfo();
+﻿namespace Prvni1 {
+    class Prvni {
+        public static void Mainx() {
+            Student s1 = new Student { //objektova inicializace
+                age = 18,
+                scholarship = 10000,
+            };
+            Accountant a1 = new Accountant {
+                age = 22,
+                salary = 25000
+            };
+            Teacher t1 = new Teacher {
+                age = 33,
+                salary = 35000,
+                teachingTime = 12
+            };
+            s1.writeInfo();
+            a1.writeInfo();
+            t1.writeInfo();
+        }
+    }
+    class Student {
+        public int age;
+        public int scholarship;
+        public void writeInfo() {
+            Console.WriteLine("Vek: " + age + " Stipendium: " + scholarship);
+            //Console.WriteLine($"Vek: {age} Stipendium: {scholarship} PODRUHE"); //argument prikazoveho radku
+        }
+    }
+    class Accountant {
+        public int age;
+        public int salary;
+        public void writeInfo() {
+            Console.WriteLine("Vek: " + age + " Plat: " + salary);
+        }
+    }
+    class Teacher {
+        public int age;
+        public int salary;
+        public int teachingTime;
+        public void writeInfo() {
+            Console.WriteLine("Vek: " + age + " Plat: " + salary + " Oduceny cas: " + teachingTime);
+        }
     }
 }
-class Student {
-    public int age;
-    public int scholarship;
-    public void writeInfo() {
-        Console.WriteLine("Vek: " + age + " Stipendium: " + scholarship);
-        Console.WriteLine($"Vek: {age} Stipendium: {scholarship} PODRUHE"); //argument prikazoveho radku
-    }
-}
-class Accountant {
-    public int age;
-    public int salary;
-    public void writeInfo() {
-        Console.WriteLine("Vek: " + age + " Plat: " + salary);
-    }
-}
-class Teacher {
-    public int age;
-    public int salary;
-    public int teachingTime;
-    public void writeInfo() {
-        Console.WriteLine("Vek: " + age + " Plat: " + salary + " Oduceny cas: " + teachingTime);
-    }
-}
-
 //1.       Základ bez konstruktoru a dědičnosti(kap.První OOP, str 2)
 // Vytvořte solution Csharp_OOP_cv a v něm projekt Prvni typu Console Application.Automaticky se v něm vytvoří třída Program.cs s metodou Main(). Vytvořte v projektu třídu Prvni1.cs, v ní veřejnou statickou metodu Mainx().
 // Zavolejte metodu Mainx z metody Main třídy Program.cs.Ověřte, zda program chodí (i když dosud nic nedělá)
