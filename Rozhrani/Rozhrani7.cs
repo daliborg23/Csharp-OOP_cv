@@ -24,7 +24,7 @@ namespace Rozhrani7 {
         public string sound() {
             return "brrr";
         }
-        public string Name => name; public override string ToString() {
+        public override string ToString() {
             return $"{GetType().Name} {name} vydava zvuk {sound()}";
         }
     }
@@ -68,8 +68,8 @@ namespace Rozhrani7 {
         }
         public string sound() {
             return "mnau";
-        }
-        public string Name => name; public override string ToString() {
+        } 
+        public override string ToString() {
             return $"{GetType().Name} {name} vydava zvuk {sound()}";
         }
     }
