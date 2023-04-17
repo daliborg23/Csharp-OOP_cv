@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prvni", "Prvni\Prvni.csproj", "{3D38A1F1-8A66-4652-8ADF-D5852FBCD21A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1Prvni", "Prvni\1Prvni.csproj", "{3D38A1F1-8A66-4652-8ADF-D5852FBCD21A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rozhrani", "Rozhrani\Rozhrani.csproj", "{2DAAE6FD-24EE-49CF-897B-0F8E329F66E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2Rozhrani", "Rozhrani\2Rozhrani.csproj", "{2DAAE6FD-24EE-49CF-897B-0F8E329F66E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
