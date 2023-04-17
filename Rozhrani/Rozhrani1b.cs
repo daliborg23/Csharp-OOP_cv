@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rozhrani1 {
+namespace Rozhrani1b {
     abstract class Animal {
         public string name;
         public static int countOfAnimals;
@@ -17,8 +17,8 @@ namespace Rozhrani1 {
     class Dog : Animal {
         Boolean isPedigree;
         public Dog() { }
-        public Dog(string name) : base (name){
-                
+        public Dog(string name) : base(name) {
+
         }
         public string sound() {
             return "haf";
@@ -38,7 +38,7 @@ namespace Rozhrani1 {
         int speed;
         public Turtle() { }
         public Turtle(string name) : base(name) {
-            
+
         }
     }
     class Rozhrani {
@@ -49,7 +49,7 @@ namespace Rozhrani1 {
             //Cat Kocka2 = new Cat ("Tlapka");
             //Turtle Zelva1 = new Turtle("Tony");
             //Turtle Zelva2 = new Turtle("Greta");
-            //Animal[] animals = new Animal[Animal.countOfAnimals];
+            //Animal[] animals = new Animal[6];
             //animals[0] = Pes1; animals[1] = Pes2; animals[2] = Kocka1; animals[3] = Kocka2; animals[4] = Zelva1; animals[5] = Zelva2;
             //Animal[] animals = new Animal[] {Pes1,Pes2,Kocka1,Kocka2,Zelva1,Zelva2};
             Animal[] animals = {
@@ -64,7 +64,7 @@ namespace Rozhrani1 {
             //    //Console.WriteLine(animal.name); // 1.
             //    Console.WriteLine($"{animal.name} - {animal.GetType().Name}"); // 2
             //}
-            for (int i = 0;i<animals.Length;i++) {
+            for (int i = 0; i < animals.Length; i++) {
                 //Console.WriteLine(animal.name); // 1.
                 Console.WriteLine($"{animals[i].name} - {animals[i].GetType().Name}"); // 2
             }

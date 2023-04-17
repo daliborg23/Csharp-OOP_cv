@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rozhrani1 {
+namespace Rozhrani2b {
     abstract class Animal {
         public string name;
         public static int countOfAnimals;
@@ -17,8 +17,8 @@ namespace Rozhrani1 {
     class Dog : Animal {
         Boolean isPedigree;
         public Dog() { }
-        public Dog(string name) : base (name){
-                
+        public Dog(string name) : base(name) {
+
         }
         public string sound() {
             return "haf";
@@ -38,35 +38,32 @@ namespace Rozhrani1 {
         int speed;
         public Turtle() { }
         public Turtle(string name) : base(name) {
-            
+
         }
     }
     class Rozhrani {
         public static void Mainx() {
             //Dog Pes1 = new Dog("Alik");
             //Dog Pes2 = new Dog("Azor");
-            //Cat Kocka1 = new Cat ("Fous");
-            //Cat Kocka2 = new Cat ("Tlapka");
+            //Cat Kocka1 = new Cat("Fous");
+            //Cat Kocka2 = new Cat("Tlapka");
             //Turtle Zelva1 = new Turtle("Tony");
             //Turtle Zelva2 = new Turtle("Greta");
-            //Animal[] animals = new Animal[Animal.countOfAnimals];
-            //animals[0] = Pes1; animals[1] = Pes2; animals[2] = Kocka1; animals[3] = Kocka2; animals[4] = Zelva1; animals[5] = Zelva2;
-            //Animal[] animals = new Animal[] {Pes1,Pes2,Kocka1,Kocka2,Zelva1,Zelva2};
-            Animal[] animals = {
+            //Animal[] animals = new Animal[] { Pes1, Pes2, Kocka1, Kocka2, Zelva1, Zelva2 };
+            //foreach (var animal in animals) {
+            //    Console.WriteLine($"{animal.name} - {animal.GetType().Name}");
+            //}
+            List<Animal> animals = new List<Animal> // animals.Add(Pes1); ...
+            {
                 new Dog("Alik"),
                 new Dog("Azor"),
-                new Cat ("Fous"),
-                new Cat ("Tlapka"),
+                new Cat("Fous"),
+                new Cat("Tlapka"),
                 new Turtle("Tony"),
                 new Turtle("Greta")
             };
-            //foreach (var animal in animals) {
-            //    //Console.WriteLine(animal.name); // 1.
-            //    Console.WriteLine($"{animal.name} - {animal.GetType().Name}"); // 2
-            //}
-            for (int i = 0;i<animals.Length;i++) {
-                //Console.WriteLine(animal.name); // 1.
-                Console.WriteLine($"{animals[i].name} - {animals[i].GetType().Name}"); // 2
+            foreach (var animal in animals) {
+                Console.WriteLine($"{animal.name} - {animal.GetType().Name}");
             }
             Console.WriteLine("Pocet zvirat: " + Animal.countOfAnimals);
             //Console.ReadKey();
