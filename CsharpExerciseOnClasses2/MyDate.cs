@@ -101,13 +101,13 @@ namespace CsharpExerciseOnClasses2 {
                 this.day = day;
             } else {
                 Console.WriteLine("Spatny den.");
-                this.day = 1;
             }
         }
         public override string ToString() {
             return $"{strDays[getDayOfWeek(year, month, day)]} {day} {strMonths[month-1]} {year}"; // "xxxday d mmm yyyy", e.g., "Tuesday 14 Feb 2012". // den mesic rok
         }
         public MyDate nextDay() {
+            // pokud bude posledni den v mesici tak 1, mesic++, jestli bude mesic 12 tak rok++.
             int day = this.getDay();
             this.setDay(day + 1);
             return this;

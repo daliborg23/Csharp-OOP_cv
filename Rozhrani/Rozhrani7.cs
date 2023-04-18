@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Rozhrani7 {
     interface ISoundable {
         public string sound();
-        public string Jmeno { get; }
         public string ToString();
+        public string getName();
+        string Jmeno { get; set; }
     }
     public class Car : ISoundable {
         public string name;
@@ -17,13 +18,14 @@ namespace Rozhrani7 {
         public Car(string name) {
             this.name = name;
         }
-        public string Jmeno {
-            get { return (name); }
-            set { name = value; }
+        public string Jmeno { 
+            get { return name; } 
+            set { this.name = value; } 
         }
         public string sound() {
             return "brrr";
         }
+        public string getName() { return name; }
         public override string ToString() {
             return $"{GetType().Name} {name} vydava zvuk {sound()}";
         }
@@ -43,9 +45,9 @@ namespace Rozhrani7 {
         public Dog(string name) : base(name) {
 
         }
-        public string Jmeno {
-            get { return (name); }
-            set { name = value; }
+        public string Jmeno { 
+            get { return name; } 
+            set { this.name = value; } 
         }
         public string sound() {
             return "haf";
@@ -62,13 +64,14 @@ namespace Rozhrani7 {
         public Cat(string name) : base(name) {
 
         }
-        public string Jmeno {
-            get { return (name); }
-            set { name = value; }
+        public string Jmeno { 
+            get { return name; } 
+            set { this.name = value; }
         }
         public string sound() {
             return "mnau";
-        } 
+        }
+        public string getName() { return name; }
         public override string ToString() {
             return $"{GetType().Name} {name} vydava zvuk {sound()}";
         }
@@ -92,13 +95,16 @@ namespace Rozhrani7 {
                 //new Turtle("Tony"),
                 //new Turtle("Greta")
             };
-
             foreach (var item in animals) {
-                Console.WriteLine($"{item.GetType().Name} {item.Jmeno} vydava zvuk {item.sound()}");
+                Console.WriteLine($"{item.GetType().Name} {item.getName()} vydava zvuk {item.sound()}");
             }
             Console.WriteLine("===============================");
             foreach (var item in animals) {
                 Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("===============================");
+            foreach (var item in animals) {
+                Console.WriteLine($"{item.GetType().Name} {item.Jmeno} vydava zvuk {item.sound()}");
             }
             Console.WriteLine("Pocet zvirat: " + Animal.countOfAnimals);
             //Console.ReadKey();
