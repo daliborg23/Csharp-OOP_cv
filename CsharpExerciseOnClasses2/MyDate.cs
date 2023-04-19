@@ -22,6 +22,7 @@ namespace CsharpExerciseOnClasses2 {
             //    if (day >= 1 && day <= 31) // zalezi na mesici //  && day <= daysInMonths[month-1] pokud unor bude mit 30 ?
             //        return true;
             bool prestupny;
+            prestupny = isLeapYear(year);
             if (year >= 1 && year <= 9999)
                 if (month == 1 || month > 2) {
                     if (day > daysInMonths[month - 1]) {
@@ -29,7 +30,6 @@ namespace CsharpExerciseOnClasses2 {
                         return false;
                     }
                 } else if (month == 2) {
-                    prestupny = isLeapYear(year);
                     if ((prestupny == false) && (day >= 29)) return false;
                     else {
                         if ((prestupny == true) && (day > 29)) {
