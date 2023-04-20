@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpExerciseOnClasses1", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpExerciseOnClasses2", "CsharpExerciseOnClasses2\CsharpExerciseOnClasses2.csproj", "{ADF99176-7491-4C42-8C4F-F1672C5F62FC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Account", "Account\Account.csproj", "{AE70108E-A150-4116-B3A0-2DD59927BD43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3Account", "Account\3Account.csproj", "{AE70108E-A150-4116-B3A0-2DD59927BD43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpExerciseOnClasses2b", "CsharpExerciseOnClasses2b\CsharpExerciseOnClasses2b.csproj", "{89218A78-D850-4CE5-AA48-85AD9161E38E}"
 EndProject
