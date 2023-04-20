@@ -56,7 +56,7 @@ namespace CsharpExerciseOnClasses2 {
                 MyDate mdDo = new(2012, 3, 2);
                 int vysl = 1;
                 do {
-                    Console.WriteLine(mdOd.nextDay());
+                    Console.WriteLine($"{mdOd.nextDay()}");
                     vysl = String.Compare(mdOd.ToString(), mdDo.ToString()); // asi neni nejidealnejsi
                 } while (vysl != 0); //mozna porovnat dohromady rok, mesic a den
             } else {

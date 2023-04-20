@@ -106,9 +106,9 @@ namespace CsharpExerciseOnClasses2 {
             }
         }
         public override string ToString() {
-            return $"{strDays[getDayOfWeek(year, month, day)]} {day} {strMonths[month-1]} {year}"; // "xxxday d mmm yyyy", e.g., "Tuesday 14 Feb 2012".
+            //return $"{strDays[getDayOfWeek(year, month, day)]} {day} {strMonths[month - 1]} {year}";
+            return $"{strDays[getDayOfWeek(year, month, day)],9} {day,2} {strMonths[month-1],2} {year,4}"; // "xxxday d mmm yyyy", e.g., "Tuesday 14 Feb 2012". {day,0:D2} s nulou na zacatku
         }
-        
         public MyDate nextDay() {
             // pokud bude posledni den v mesici tak 1, mesic++, jestli bude mesic 12 tak rok++.
             int day = this.getDay();
