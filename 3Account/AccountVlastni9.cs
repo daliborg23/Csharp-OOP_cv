@@ -8,15 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountVlastni9 {
-    public class MaloPenezException : Exception {
-
-    }
-    public class VyberZCizihoUctuException : Exception {
-
-    }
-    public class PrevodNulyException : Exception {
-
-    }
+    public class MaloPenezException : Exception {}
+    public class VyberZCizihoUctuException : Exception {}
+    public class PrevodNulyException : Exception {}
     public class Account {
         public int balance;
         //public Account() { }
@@ -25,12 +19,10 @@ namespace AccountVlastni9 {
                 if (balance + amount < 0) throw new MaloPenezException();
                 balance += amount;
             } catch (MaloPenezException e) {
-                //Console.WriteLine("Nedostatek penez pro vyber... Na ucte je: " + balance +"\n"+ e.Message + "\n" + e.StackTrace + "\n" + e);
                 Console.WriteLine("Nedostatek penez pro vyber... Na ucte je: " + balance);
             }
         }
         public int writeBalance() { //spis string
-            //Console.WriteLine($" je {balance},-"); // tady chci dostat nazev promenne ale asi jen pomoci property?
             return balance;
         }
         public void transferTo(Account account, int amount) {

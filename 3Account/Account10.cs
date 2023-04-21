@@ -18,12 +18,8 @@ namespace Account10 {
             balance += amount;
         }
         public int writeBalance() { //spis string
-            //Console.WriteLine($" je {balance},-"); // tady chci dostat nazev promenne ale asi jen pomoci property?
             return balance;
         }
-        //public void writeBalance() {
-        //    Console.WriteLine($"Na uctu je: {balance}");
-        //}
         public int writeBalanceInDolars(int kurz) {
             try {
                 return balance / kurz;
@@ -73,31 +69,6 @@ namespace Account10 {
                 //throw;
             }
         }
-        //public void transferTo(Account ucet, int castka) { // zkusit
-        //    try {
-        //        if (castka > balance) {
-        //            throw new Exception("TransferTo() říká: Na účtu není dost peněz");
-        //        }
-        //        else if (castka < 0) {
-        //            throw new Exception("TransferTo() říká: Nemůžeš vysát prachy...");
-        //        }
-        //        else if (castka == 0) {
-        //            throw new Exception("TransferTo() říká: Posíláš nulu, jo? Pereš prachy, jo?");
-        //        }
-        //        else if (this == ucet) {
-        //            throw new Exception("TransferTo() říká: To se jako snažíš poslat prachy sám sobě, jo?");
-
-
-        //        }
-        //        ucet.balance += castka;
-        //        this.balance -= castka;
-
-        //    }
-        //    catch (Exception e) {
-        //        Console.WriteLine(e.Message);
-        //    }
-
-        //}
     }
     public class TestAccount {
         public static void Mainx() {
@@ -119,10 +90,6 @@ namespace Account10 {
             Console.WriteLine($"Zadano: {amount},- \t ");
             Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
             Console.WriteLine("Na ucte u2: " + u2.writeBalance() + ",-");
-            //Console.WriteLine(u1.writeBalanceInDolars(20));
-            //Console.WriteLine(u1.writeBalanceInDolars(0));
-            //Console.WriteLine(u1.writeBalanceInDolarsDouble(20));
-            //Console.WriteLine(u1.writeBalanceInDolarsDouble(0));
             Console.WriteLine("Kolik penez chcete poslat z 1. uctu na 2. ucet?");
             amount = Int32.Parse(Console.ReadLine());
             try {

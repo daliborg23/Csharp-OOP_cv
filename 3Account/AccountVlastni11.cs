@@ -7,15 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountVlastni11 {
-    public class MaloPenezException : Exception {
-
-    }
-    public class VyberZCizihoUctuException : Exception {
-
-    }
-    public class PrevodNulyException : Exception {
-
-    }
+    public class MaloPenezException : Exception {}
+    public class VyberZCizihoUctuException : Exception {}
+    public class PrevodNulyException : Exception {}
     public class Account {
         public int balance;
         //public Account() { }
@@ -24,30 +18,23 @@ namespace AccountVlastni11 {
             balance += amount;
         }
         public int writeBalance() { //spis string
-            //Console.WriteLine($" je {balance},-"); // tady chci dostat nazev promenne ale asi jen pomoci property?
             return balance;
         }
-        //public void writeBalance() {
-        //    Console.WriteLine($"Na uctu je: {balance}");
-        //}
         public void transferTo(Account account, int amount) {
-
-                if (amount < 0) {
-                    throw new VyberZCizihoUctuException();
-                }
-                if (amount > this.balance) {
-                    throw new MaloPenezException();
-                }
-                if (amount == 0) {
-                    throw new PrevodNulyException();
-                }
-                if (account == this) {
-                    throw new ArgumentOutOfRangeException("Nemuzes poslat penize sam sobe...");
-                }
-                this.balance -= amount;
-                account.balance += amount;
-            
-            
+            if (amount < 0) {
+                throw new VyberZCizihoUctuException();
+            }
+            if (amount > this.balance) {
+                throw new MaloPenezException();
+            }
+            if (amount == 0) {
+                throw new PrevodNulyException();
+            }
+            if (account == this) {
+                throw new ArgumentOutOfRangeException("Nemuzes poslat penize sam sobe...");
+            }
+            this.balance -= amount;
+            account.balance += amount;
         }
     }
     public class TestAccount {
