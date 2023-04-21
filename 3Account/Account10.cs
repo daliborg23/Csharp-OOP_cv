@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,23 +7,15 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Account9 {
+namespace Account10 {
     public class Account {
         public int balance;
         //public Account() { }
         public void insertInto(int amount) {
-            try {
-                if (balance + amount < 0) {
-                    Console.WriteLine("Nedostatek penez pro vyber... Na ucte je: " + balance);
-                    throw new ArgumentOutOfRangeException();
-                } else {
-                    balance += amount; // +vklad -vyber
-                }
+            if (balance + amount < 0) {
+                throw new ArgumentOutOfRangeException("Nedostatek penez pro vyber... Na ucte je: " + balance);
             }
-            catch (ArgumentOutOfRangeException e) {
-                Console.WriteLine(e.Message.ToString());
-                //throw;
-            }
+            balance += amount;
         }
         public int writeBalance() { //spis string
             //Console.WriteLine($" je {balance},-"); // tady chci dostat nazev promenne ale asi jen pomoci property?
@@ -62,17 +55,21 @@ namespace Account9 {
             try {
                 if (amount < 0) {
                     throw new ArgumentOutOfRangeException("Zadana zaporna castka...");
-                } else if (amount > this.balance) {
-                    throw new ArgumentOutOfRangeException("Nedostatek penez pro prevod... Na ucte je: " + balance + " ");
-                } else if (account == this) {
-                    throw new ArgumentOutOfRangeException("Nemuzes poslat penize sam sobe...");
-                } else {
-                    this.balance -= amount;
-                    account.balance += amount;
                 }
+                if (amount > this.balance) {
+                    throw new ArgumentOutOfRangeException("Nedostatek penez pro prevod... Na ucte je: " + balance + " ");
+                }
+                if (amount == 0) {
+                    throw new ArgumentOutOfRangeException("Nelze prevest 0,-");
+                }
+                if (account == this) {
+                    throw new ArgumentOutOfRangeException("Nemuzes poslat penize sam sobe...");
+                }
+                this.balance -= amount;
+                account.balance += amount;
             }
             catch (ArgumentOutOfRangeException e) {
-                Console.WriteLine("["+e.Message.ToString()+"]");
+                Console.WriteLine("[" + e.Message.ToString() + "]");
                 //throw;
             }
         }
@@ -108,22 +105,17 @@ namespace Account9 {
             Account u2 = new Account();
             u1.balance = 500; // startovne
             int amount = 0;
-            //Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
-            //Console.WriteLine("Na ucte u2: " + u2.writeBalance() + ",-");
-            //Console.Write("Vklad/vyber penez na u1: ");
-            //try {
-            //    amount = Int32.Parse(Console.ReadLine());
-            //}
-            //catch (FormatException e) {
-            //    Console.WriteLine("Zadano nic." + e.Message);
-            //    //throw;
-            //    amount = 0;
-            //}
-            //catch (NullReferenceException e) {
-            //    amount = 0;
-            //    throw;
-            //}
-            u1.insertInto(amount);
+            Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
+            Console.WriteLine("Na ucte u2: " + u2.writeBalance() + ",-");
+            Console.Write("Vklad/vyber penez na u1: ");
+            amount = Int32.Parse(Console.ReadLine());
+            try {
+                u1.insertInto(amount);
+            }
+            catch (ArgumentOutOfRangeException e) {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
             Console.WriteLine($"Zadano: {amount},- \t ");
             Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
             Console.WriteLine("Na ucte u2: " + u2.writeBalance() + ",-");
@@ -132,19 +124,14 @@ namespace Account9 {
             //Console.WriteLine(u1.writeBalanceInDolarsDouble(20));
             //Console.WriteLine(u1.writeBalanceInDolarsDouble(0));
             Console.WriteLine("Kolik penez chcete poslat z 1. uctu na 2. ucet?");
+            amount = Int32.Parse(Console.ReadLine());
             try {
-                amount = Int32.Parse(Console.ReadLine());
+                u1.transferTo(u2, amount);
             }
-            catch (FormatException e) {
-                Console.WriteLine("Zadano nic." + e.Message);
-                //throw;
-                amount = 0;
+            catch (ArgumentOutOfRangeException e) {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
-            catch (NullReferenceException e) {
-                amount = 0;
-                throw;
-            }
-            u1.transferTo(u2,amount);
             Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
             Console.WriteLine("Na ucte u2: " + u2.writeBalance() + ",-");
             //Console.WriteLine("Kolik penez chcete poslat z 1. uctu na 1. ucet? - nesmysl");
