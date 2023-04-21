@@ -21,23 +21,25 @@ namespace Account7 {
             try {
                 return balance / kurz;
             }
-            catch (DivideByZeroException) {
-                Console.WriteLine("Deleni nulou!");
+            catch (DivideByZeroException e) {
+                Console.WriteLine("Deleni nulou!" + e.Message);
                 return balance;
             }
-            catch (ArithmeticException) {
-                Console.WriteLine("Nejaka dalsi vyjimka co se pocitani tyce.");
+            catch (ArithmeticException e) {
+                Console.WriteLine("Nejaka dalsi vyjimka co se pocitani tyce." + e.Message);
                 return balance;
-                //throw; // ???
             }
-            //return balance / kurz;
+            catch (Exception e) {
+                Console.WriteLine("Nejaka dalsi vyjimka co se pocitani tyce. Exception" + e.Message);
+                return balance;
+            }
         }
         public double writeBalanceInDolarsDouble(double kurz) { // vypise otaznik
             try {
-                throw new ArithmeticException();
+                if (kurz == 0) throw new DivideByZeroException();
                 return balance / kurz;
             }
-            catch (ArithmeticException) {
+            catch (DivideByZeroException) {
                 Console.WriteLine("Deleni nulou!");
                 return balance;
             }
@@ -56,7 +58,9 @@ namespace Account7 {
             Console.WriteLine($"Zadano: {u1.writeBalance()},-");
             Console.WriteLine(u1.writeBalanceInDolars(20));
             Console.WriteLine(u1.writeBalanceInDolars(0));
+            Console.WriteLine(u1.writeBalanceInDolarsDouble(20));
             Console.WriteLine(u1.writeBalanceInDolarsDouble(0));
+
         }
     }
 }
