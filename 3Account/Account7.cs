@@ -17,6 +17,31 @@ namespace Account7 {
         //public void writeBalance() {
         //    Console.WriteLine($"Na uctu je: {balance}");
         //}
+        public int writeBalanceInDolars(int kurz) {
+            try {
+                return balance / kurz;
+            }
+            catch (DivideByZeroException) {
+                Console.WriteLine("Deleni nulou!");
+                return balance;
+            }
+            catch (ArithmeticException) {
+                Console.WriteLine("Nejaka dalsi vyjimka co se pocitani tyce.");
+                return balance;
+                //throw; // ???
+            }
+            //return balance / kurz;
+        }
+        public double writeBalanceInDolarsDouble(double kurz) { // vypise otaznik
+            try {
+                throw new ArithmeticException();
+                return balance / kurz;
+            }
+            catch (ArithmeticException) {
+                Console.WriteLine("Deleni nulou!");
+                return balance;
+            }
+        }
         public void transferTo(Account account, int amount) {
             this.balance -= amount;
             account.balance += amount;
@@ -29,6 +54,9 @@ namespace Account7 {
             int amount = Int32.Parse(Console.ReadLine());
             u1.insertInto(amount);
             Console.WriteLine($"Zadano: {u1.writeBalance()},-");
+            Console.WriteLine(u1.writeBalanceInDolars(20));
+            Console.WriteLine(u1.writeBalanceInDolars(0));
+            Console.WriteLine(u1.writeBalanceInDolarsDouble(0));
         }
     }
 }
