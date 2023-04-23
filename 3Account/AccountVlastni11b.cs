@@ -68,9 +68,9 @@ namespace AccountVlastni11b {
                 //catch (MaloPenezException e) { Console.WriteLine("Nedostatek penez pro vyber... Na ucte je: " + u1.balance + "\n" + e.Message + "\n" + e.StackTrace + "\n" + e); } 
                 //catch (VyberZCizihoUctuException e) { Console.WriteLine("Zadana zaporna castka..." + "\n" + e.Message + "\n" + e.StackTrace + "\n" + e); }
                 //catch (PrevodNulyException e) { Console.WriteLine("Nelze poslat 0,-" + "\n" + e.Message + "\n" + e.StackTrace + "\n" + e); }
-                catch (MaloPenezException e) { Console.WriteLine(e.Message); } // + e.Message + e.StackTrace + e
-                catch (VyberZCizihoUctuException e) { Console.WriteLine(e.Message); }
-                catch (PrevodNulyException e) { Console.WriteLine(e.Message); }
+                catch (MaloPenezException e) { Console.WriteLine(e.Message + e.StackTrace + e); } // + e.Message + e.StackTrace + e
+                catch (VyberZCizihoUctuException e) { Console.WriteLine(e.Message + e.StackTrace + e); }
+                catch (PrevodNulyException e) { Console.WriteLine(e.Message + e.StackTrace + e); }
             } while (true);
             Console.WriteLine($"Zadano: {amount},- \t ");
             Console.WriteLine("Na ucte u1: " + u1.writeBalance() + ",-");
