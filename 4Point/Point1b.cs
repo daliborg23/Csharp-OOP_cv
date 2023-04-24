@@ -40,13 +40,16 @@ namespace _4Point1b {
             set { this.center = value; } 
         }
 
-        public Point Test { get => test; set => test = value; }
+        //public Point Test { get => test; set => test = value; } // vygenerovane
 
         public Shape(Point center) {
             this.Center = center;
         }
         public Shape(double x, double y) {
             this.Center = new Point(x, y);
+        }
+        public override string ToString() {
+            return $"{Center.ToString()}";
         }
     }
     public class Circle : Shape {
@@ -98,6 +101,7 @@ namespace _4Point1b {
 
             Shape s1 = new Shape(1.38,2.11);
             Console.WriteLine(s1.Center);
+            Console.WriteLine(s1.ToString());
         }
     }
 }
