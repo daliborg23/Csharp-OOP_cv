@@ -62,7 +62,7 @@ namespace _4Point3 {
             //this.r = r;
         }
         public override string ToString() {
-            return $"Kruh s polomerem: {Math.Round(r, 2),5} a stredem: {center.ToString()}";
+            return $"Kruh s polomerem: {Math.Round(r, 2),5}";
         }
         public override void writeInfo() {
             Console.Write($"Kruh s polomerem: {Math.Round(r, 2),5} ");
@@ -86,10 +86,10 @@ namespace _4Point3 {
         }
         public override string ToString() {
             if (a == b) {
-                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5} a stredem: {center.ToString()}";
+                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5}";
             }
             else {
-                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5} a stredem: {center.ToString()}";
+                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5}";
             }
         }
         public override void writeInfo() {
@@ -139,6 +139,8 @@ namespace _4Point3 {
             r2.writeInfo();
             r3.writeInfo();
             r4.writeInfo();
+
+            Console.WriteLine("ToString:\n" + r1.ToString());
         }
     }
 }
