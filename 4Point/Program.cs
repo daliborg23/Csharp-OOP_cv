@@ -12,7 +12,9 @@ namespace _4Point {
             //_4Point2.TestPoint.Mainx();
             //_4Point3.TestPoint.Mainx();
             //_4Point4.TestPoint.Mainx();
-            _4Point5.TestPoint.Mainx();
+            //_4Point5.TestPoint.Mainx();
+            //_4Point6.TestPoint.Mainx();
+            _4Point7.TestPoint.Mainx();
         }
     }
 }
