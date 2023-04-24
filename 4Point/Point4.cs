@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _4Point3 {
+namespace _4Point4 {
     public class Point {
         public double x; public double y;
         //public Point() {}
@@ -20,7 +20,7 @@ namespace _4Point3 {
             //return "["+Math.Round(x, 2)+ "; "+ Math.Round(y, 2) + "]";
         }
     }
-    public class Shape {
+    public abstract class Shape {
         public Point center;
         //public Shape(){}
         public Shape(Point center) {
@@ -29,6 +29,8 @@ namespace _4Point3 {
         public Shape(double x, double y) : this(new Point(x, y)) {
             //this.center = new Point(x, y);
         }
+        public abstract double perimeter();
+        public abstract double area();
         public override string ToString() {
             return $"{center.ToString()}";
         }
@@ -48,11 +50,17 @@ namespace _4Point3 {
         public Circle(double x, double y, double r) : this(new Point(x, y), r) {
             //this.r = r;
         }
+        public override double perimeter() {
+            return Math.Round(2*Math.PI*r,2);
+        }
+        public override double area() {
+            return Math.Round(Math.PI * Math.Pow(r,2), 2);
+        }
         public override string ToString() {
             return $"Kruh s polomerem: {Math.Round(r, 2),5}";
         }
         public override void writeInfo() {
-            Console.Write($"Kruh s polomerem: {Math.Round(r, 2),5} ");
+            Console.Write($"Kruh s polomerem: {Math.Round(r, 2),5}, Obvodem: {perimeter()}, Obsahem: {area()} ");
             base.writeInfo();
         }
     }
@@ -71,12 +79,18 @@ namespace _4Point3 {
         public Rectangle(double a) : this(new Point(0, 0), a) {
             //this.a = a; this.b = a;
         }
+        public override double perimeter() {
+            return Math.Round(2 * (a+b), 2);
+        }
+        public override double area() {
+            return Math.Round(a*b, 2);
+        }
         public override string ToString() {
             if (a == b) {
-                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5}";
+                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5}, Obvodem: {perimeter()}, Obsahem: {area()} ";
             }
             else {
-                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5}";
+                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5}, Obvodem: {perimeter()}, Obsahem: {area()} ";
             }
         }
         public override void writeInfo() {
@@ -84,14 +98,13 @@ namespace _4Point3 {
                 Console.Write($"Ctverec s delkou strany: a = {Math.Round(a, 2),5} ");
             }
             else {
-                Console.Write($"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5} ");
+                Console.Write($"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5}, Obvodem: {perimeter()}, Obsahem: {area()} ");
             }
             base.writeInfo();
         }
     }
     public class TestPoint {
         public static void Mainx() {
-            Shape s1 = new Shape(3.45, 5.43);
 
             Circle c1 = new Circle(new Point(4.23, -6.66), 7);
             Circle c2 = new Circle(4.2);
@@ -102,7 +115,19 @@ namespace _4Point3 {
             Rectangle r3 = new Rectangle(new Point(4.77, 5.29), 4.2);
             Rectangle r4 = new Rectangle(7.77);
 
-            s1.writeInfo();
+            //Console.WriteLine(c1);
+            //Console.WriteLine(c2);
+            //Console.WriteLine(c3);
+
+            //Console.WriteLine(r1);
+            //Console.WriteLine(r2);
+            //Console.WriteLine(r3);
+            //Console.WriteLine(r4);
+
+            //Shape s1 = new Shape(new Point(1.11, 1.22));
+            //Console.WriteLine(s1.ToString());
+            //ShapeX s2 = new ShapeX(new Point(2.11, 2.43));
+            //Console.WriteLine(s2.ToString());
 
             c1.writeInfo();
             c2.writeInfo();
