@@ -6,109 +6,98 @@ using System.Threading.Tasks;
 
 namespace _4Point1b {
     public class Point {
-        public double x; public double y;
+        private double x; private double y;
         //public Point() {}
+        #region GETTERSETTER
+        public double getX() {
+            return x;
+        }
+        public double getY() {
+            return y;
+        }
+        public void setY(double y) {
+            this.y = y;
+        } 
+        #endregion
         public Point(double x, double y) {
             this.x = x;
             this.y = y;
         }
         public override string ToString() {
-            return $"[{Math.Round(x, 2)}; {Math.Round(y, 2)}]";
+            return $"[{Math.Round(x, 2),0:F2}; {Math.Round(y, 2),0:F2}]";
+            //return $"[{Math.Round(x, 2),5:F2}; {Math.Round(y,2),5:F2}]";
+            //return $"[{String.Format("{0:0.00}", x)}; {String.Format("{0:0.00}", y)}]";
+            //return "[" + Math.Round(x, 2).ToString("0.00") + "; " + Math.Round(y,2).ToString("0.00") + "]";
             //return "["+Math.Round(x, 2)+ "; "+ Math.Round(y, 2) + "]";
         }
     }
     public class Shape {
-        public Point center;
+        private Point center;
         //public Shape(){}
+        private Point test;
+        public Point Center {
+            get { return center; }
+            set { this.center = value; } 
+        }
+
+        public Point Test { get => test; set => test = value; }
+
         public Shape(Point center) {
-            this.center = center;
+            this.Center = center;
         }
         public Shape(double x, double y) {
-            this.center = new Point(x, y);
+            this.Center = new Point(x, y);
         }
     }
-    public class Circle {
-        public Point center; public double r;
+    public class Circle : Shape {
+        public double r;
         //public Circle(){}
-        public Circle(Point center, double r) {
-            this.center = center;
+        public Circle(Point center, double r) : base(center) {
             this.r = r;
         }
-        public Circle(double r) {
-            this.center = new Point(0, 0);
+        public Circle(double r) : base(new Point(0, 0)) {
             this.r = r;
         }
-        public Circle(double x, double y, double r) {
-            this.center = new Point(x, y);
+        public Circle(double x, double y, double r) : base(x, y) {
             this.r = r;
-        }
-        public Circle(double x, double y, double a, double b) { // x,y stred   a,b bod  // d=√((x2 – x1)² + (y2 – y1)²)
-            this.center = new Point(x, y);
-            r = Math.Sqrt(Math.Pow((a - x), 2) + Math.Pow((b - y), 2));
-        }
-        public Circle(Point center, Point bod) {
-            this.center = center;
-            r = Math.Sqrt(Math.Pow((bod.x - center.x), 2) + Math.Pow((bod.y - center.y), 2));
         }
         public override string ToString() {
-            return $"Kruh s polomerem: {Math.Round(r, 2),5} a stredem: {center.ToString()}";
+            return $"Kruh s polomerem: {Math.Round(r, 2),5} a stredem: {Center.ToString()}";
         }
     }
-    public class Rectangle {
-        public Point center; public double a; public double b;
+    public class Rectangle : Shape {
+        public double a; public double b;
         //public Rectangle(){}
-        public Rectangle(Point center, double a, double b) {
-            this.center = center;
-            this.a = a;
-            this.b = b;
-        }
-        public Rectangle(double a, double b) {
+        public Rectangle(Point center, double a, double b) : base(center) {
             this.a = a; this.b = b;
-            this.center = new Point(0, 0); // ??
         }
-        public Rectangle(Point center, double a) { // ctverec
-            this.center = center;
-            this.a = a;
-            this.b = a;
+        public Rectangle(double a, double b) : base(new Point(0, 0)) {
+            this.a = a; this.b = b;
         }
-        public Rectangle(double a) {
-            this.center = new Point(0, 0);
-            this.a = a;
-            this.b = a;
+        public Rectangle(Point center, double a) : base(center) { // ctverec
+            this.a = a; this.b = a;
+        }
+        public Rectangle(double a) : base(new Point(0, 0)) {
+            this.a = a; this.b = a;
         }
         public override string ToString() {
             if (a == b) {
-                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5} a stredem: {center.ToString()}";
+                return $"Ctverec s delkou strany: a = {Math.Round(a, 2),5} a stredem: {Center.ToString()}";
             }
             else {
-                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5} a stredem: {center.ToString()}";
+                return $"Obdelnik s delkou stran: a = {Math.Round(a, 2),5}, b = {Math.Round(b, 2),5} a stredem: {Center.ToString()}";
             }
         }
     }
     public class TestPoint {
         public static void Mainx() {
-            Circle c1 = new Circle(new Point(4.23, -6.66), 7);
-            Circle c2 = new Circle(4.2);
-            Circle c3 = new Circle(5.01, -3.88, 4.44);
-            Circle c4 = new Circle(-2.22, -1.99, 3.22, -4.2);
-            Circle c5 = new Circle(new Point(-1.99, -2.12), new Point(2.52, 3.77));
+            Point p1 = new Point(3.66, -2.87);
+            Console.WriteLine(p1);
+            p1.setY(-3.41);
+            Console.WriteLine(p1);
 
-            Rectangle r1 = new Rectangle(new Point(3.22, -3.98), 5.76, 4.09);
-            Rectangle r2 = new Rectangle(-7.55, -6.49);
-            Rectangle r3 = new Rectangle(new Point(4.77, 5.29), 4.2);
-            Rectangle r4 = new Rectangle(7.77);
-
-            Console.WriteLine(c1);
-            Console.WriteLine(c2);
-            Console.WriteLine(c3);
-            Console.WriteLine(c4);
-            Console.WriteLine(c5);
-
-            Console.WriteLine(r1);
-            Console.WriteLine(r2);
-            Console.WriteLine(r3);
-            Console.WriteLine(r4);
+            Shape s1 = new Shape(1.38,2.11);
+            Console.WriteLine(s1.Center);
         }
     }
 }
-
