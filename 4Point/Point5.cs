@@ -121,6 +121,7 @@ namespace _4Point5 {
                 try {
                     polomer = Double.Parse(Console.ReadLine());
                     Circle c1 = new Circle(polomer);
+                    c1.writeInfo();
                     break;
                 }
                 catch (ZapornaHodnotaException e) { Console.WriteLine(e.Message); }
@@ -128,30 +129,62 @@ namespace _4Point5 {
             } while (true);
             Console.WriteLine($"Zadany polomer: {polomer} \t ");
 
-            double strA; double strB; double strAOK; double strBOK;bool OKA; bool OKB; bool Smycka;
+            //double strA; double strB; double strAOK; double strBOK; bool OKA; bool OKB; bool Smycka;
+            //do {
+            //    Smycka = true;
+            //    Console.Write("Zadejte delku strany A: ");
+            //    OKA = Double.TryParse(Console.ReadLine(), out strA);
+            //    Console.Write("Zadejte delku strany B: ");
+            //    OKB = Double.TryParse(Console.ReadLine(), out strB);
+            //    if (strA < 0 || strB < 0) {
+            //        Console.WriteLine("Nelze zadat zaporne cislo." + ((strA < 0) ? "strana A" : "strana B"));
+            //        Smycka = false;
+            //    }
+            //    else if (!OKA) {
+            //        Console.WriteLine("Strana A nelze prevest na cislo. " + strA.ToString());
+            //        Smycka = false;
+            //    }
+            //    else if (!OKB) {
+            //        Console.WriteLine("Strana B nelze prevest na cislo. " + strB.ToString());
+            //        Smycka = false;
+            //    }
+            //    else {
+            //        strAOK = strA;
+            //        strBOK = strB;
+            //        Rectangle r1 = new Rectangle(new Point(2.22, 3.33), strAOK, strBOK);
+            //        r1.writeInfo();
+            //    }
+            //} while (!Smycka);
+
+            double strA; double strB; bool OKA; bool OKB;
             do {
-                Smycka = true;
+                OKA = true;
                 Console.Write("Zadejte delku strany A: ");
                 OKA = Double.TryParse(Console.ReadLine(), out strA);
+                if (strA < 0) {
+                    Console.WriteLine("Nelze zadat zaporne cislo. strana A < 0");
+                    OKA = false;
+                }
+                else if (!OKA) {
+                    Console.WriteLine("Strana A nelze prevest na cislo. " + strA.ToString());
+                    OKA = false;
+                }
+            } while (!OKA);
+            do {
+                OKB = true;
                 Console.Write("Zadejte delku strany B: ");
                 OKB = Double.TryParse(Console.ReadLine(), out strB);
-                if (strA < 0 || strB < 0) {
-                    Console.WriteLine("Nelze zadat zaporne cislo." + ((strA<0) ? "strana A" : "strana B"));
-                    Smycka = false;
-                } else if (!OKA) {
-                    Console.WriteLine("Strana A nelze prevest na cislo.");
-                    Smycka = false;
-                } else if (!OKB) {
-                    Console.WriteLine("Strana B nelze prevest na cislo.");
-                    Smycka = false;
-                } else { 
-                    strAOK = strA;
-                    strBOK = strB;
-                    Rectangle r1 = new Rectangle(strAOK, strBOK);
-                    r1.writeInfo();
+                if (strB < 0) {
+                    Console.WriteLine("Nelze zadat zaporne cislo. strana B = " + strB + " < 0");
+                    OKB = false;
                 }
-            } while (!Smycka);
-            
+                else if (!OKB) {
+                    Console.WriteLine("Strana B nelze prevest na cislo. " + strB.ToString());
+                    OKB = false;
+                }
+            } while (!OKB);
+            Rectangle r1 = new Rectangle(new Point(2.22, 3.33), strA, strB);
+            r1.writeInfo();
         }
     }
 }
