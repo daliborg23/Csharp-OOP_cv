@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _4Point7 {
+namespace _4Point8 {
     interface IPocitani {
         double perimeter();
     }
@@ -15,14 +15,15 @@ namespace _4Point7 {
         public double pocetPiv;
         public double pocetSeduLehu;
         public static double BMI = 22.0; // ???
-        public Person(double pocetPiv, double pocetSeduLehu) { 
-            this.pocetPiv = pocetPiv*0.08;
-            this.pocetSeduLehu = pocetSeduLehu*(0.17);
+        public Person(double pocetPiv, double pocetSeduLehu) {
+            this.pocetPiv = pocetPiv * 0.08;
+            this.pocetSeduLehu = pocetSeduLehu * (0.17);
         }
         public double perimeter() {
             if (pocetPiv > pocetSeduLehu) {
-                return (this.pocetPiv*5-this.pocetSeduLehu) * BMI;
-            } else {
+                return (this.pocetPiv * 5 - this.pocetSeduLehu) * BMI;
+            }
+            else {
                 return (this.pocetSeduLehu * 15) - this.pocetPiv * BMI;
             }
         }
@@ -133,34 +134,26 @@ namespace _4Point7 {
             base.writeInfo();
         }
     }
+    public class Cylinder {
+        public Circle bottom;
+        public double height;
+        public Cylinder(){}
+        public Cylinder(Circle bottom, double height) { 
+            this.bottom = bottom;
+            this.height = height;
+        }
+        public double surface() {
+            return Math.Round(2 * bottom.area() + bottom.perimeter() * height,2);
+        }
+        public double volume() {
+            return Math.Round(bottom.area() * height,2);
+        }
+        public override string ToString() {
+            return $"Valec s objemem: {volume()}cm3, Povrchem: {surface()}cm2, Podstavou: { bottom.ToString()} stred je v bode: {bottom.center.ToString()}";
+        }
+    }
     public class TestPoint {
         public static void Mainx() {
-            //double sumaObvodu = 0.0;
-            //IPocitani[] PoleTvaru = new IPocitani[9] {
-            //    new Circle(new Point(4.23, -6.66), 7),
-            //    new Circle(4.2),
-            //    new Circle(5.01, 3.88, 4.44),
-
-            //    new Rectangle(new Point(-3.22, 3.98), 5.76, 4.09),
-            //    new Rectangle(7.55, 6.49),
-            //    new Rectangle(new Point(4.77, -5.29), 4.2),
-            //    new Rectangle(7.77),
-
-            //    new Person(15,0),
-            //    new Person(0, 30)
-            //};
-            //for (int i = 0; i < PoleTvaru.Length; i++) {
-            //    sumaObvodu += PoleTvaru[i].perimeter();
-            //    //if (PoleTvaru[i] is Shape)
-            //    //    sumaObvodu += PoleTvaru[i].perimeter();
-            //    //Console.Write($"Obvody teles: {sumaObvodu}cm");
-            //    //if (PoleTvaru[i] is Person)
-            //    //    sumaObvodu += PoleTvaru[i].perimeter();
-            //    //Console.WriteLine($"Obvody pasu lidi: {sumaObvodu}cm");
-            //}
-            //sumaObvodu = Math.Round(sumaObvodu, 2);
-            //Console.WriteLine($"Soucet obvodu vsech teles a osob: {sumaObvodu}cm"); // 402.43
-
             //double sumaObvodu = 0.0;
             //List<IPocitani> ListTvaru = new List<IPocitani>() {
             //    new Circle(new Point(4.23, -6.66), 7),
@@ -181,44 +174,11 @@ namespace _4Point7 {
             //sumaObvodu = Math.Round(sumaObvodu, 2);
             //Console.WriteLine($"Soucet obvodu vsech vytvorenych kruhu je: {sumaObvodu}cm"); // 402.43
 
-            //double sumaObvodu = 0.0;
-            //List<IPocitani> ListTvaru = new List<IPocitani>();
-            //ListTvaru.Add(new Circle(new Point(4.23, -6.66), 7));
-            //ListTvaru.Add(new Circle(4.2));
-            //ListTvaru.Add(new Circle(5.01, 3.88, 4.44));
+            Cylinder cyl1 = new Cylinder(new Circle(new Point(2.34,3.45),3.6),4.2);
+            Console.WriteLine(cyl1);
 
-            //ListTvaru.Add(new Rectangle(new Point(-3.22, 3.98), 5.76, 4.09));
-            //ListTvaru.Add(new Rectangle(7.55, 6.49));
-            //ListTvaru.Add(new Rectangle(new Point(4.77, -5.29), 4.2));
-            //ListTvaru.Add(new Rectangle(7.77));
 
-            //ListTvaru.Add(new Person(15, 0));
-            //ListTvaru.Add(new Person(0, 30));
-            //for (int i = 0; i < ListTvaru.Count; i++) {
-            //    sumaObvodu += ListTvaru[i].perimeter();
-            //}
-            //sumaObvodu = Math.Round(sumaObvodu, 2);
-            //Console.WriteLine($"Soucet obvodu vsech vytvorenych kruhu je: {sumaObvodu}cm"); // 402.43
 
-            double sumaObvodu = 0.0;
-            ArrayList ListTvaru = new ArrayList();
-            ListTvaru.Add(new Circle(new Point(4.23, -6.66), 7));
-            ListTvaru.Add(new Circle(4.2));
-            ListTvaru.Add(new Circle(5.01, 3.88, 4.44));
-
-            ListTvaru.Add(new Rectangle(new Point(-3.22, 3.98), 5.76, 4.09));
-            ListTvaru.Add(new Rectangle(7.55, 6.49));
-            ListTvaru.Add(new Rectangle(new Point(4.77, -5.29), 4.2));
-            ListTvaru.Add(new Rectangle(7.77));
-
-            ListTvaru.Add(new Person(15, 0));
-            ListTvaru.Add(new Person(0, 30));
-            for (int i = 0; i < ListTvaru.Count; i++) {
-                sumaObvodu += ((IPocitani)ListTvaru[i]).perimeter();
-                //sumaObvodu += ((ListTvaru[i] as IPocitani).perimeter());
-            }
-            sumaObvodu = Math.Round(sumaObvodu, 2);
-            Console.WriteLine($"Soucet obvodu vsech vytvorenych kruhu je: {sumaObvodu}cm"); // 402.43
 
 
         }
