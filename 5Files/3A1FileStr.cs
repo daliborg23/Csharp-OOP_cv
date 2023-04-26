@@ -19,7 +19,7 @@ namespace _5Files {
             Console.WriteLine("\n" + dny + " dnu a " + hodiny + "hodiny je " + (dny * 24) + hodiny + " hodin\n"); //druhá možnost
         }
     }
-    public class A1FileStr {
+    public class _3A1FileStr {
         public static void Mainx() {
             int dny;
             int hodiny;
@@ -56,21 +56,21 @@ namespace _5Files {
                     string dnyHodniny = vstup.ReadToEnd();
                     string[] lines = dnyHodniny.Split(new char[] { '\n' });
                     int count = lines.Length;
-                    try {
-                        dny = int.Parse(lines[0]);
-                        hodiny = int.Parse(lines[1]);
-                        //sekundy = int.Parse(lines[2]); // cteni za koncem souboru?
-                    }
-                    catch (FormatException e) {
-                        Console.WriteLine("Spatne zadane hodnoty. ");
-                        //throw;
-                    }
-                    catch (IndexOutOfRangeException e) {
-                        Console.WriteLine("Pokus o cteni tretiho radku ktery neni.");
-                    }
-                    catch (Exception e) {
-                        Console.WriteLine("Nejaka dalsi vyjimka?\n" + e.Message + "\n" + e.StackTrace);
-                    }
+                        try {
+                            dny = int.Parse(lines[0]);
+                            hodiny = int.Parse(lines[1]);
+                            //sekundy = int.Parse(lines[2]); // cteni za koncem souboru?
+                        }
+                        catch (FormatException e) {
+                            Console.WriteLine("Spatne zadane hodnoty. ");
+                            //throw;
+                        }
+                        catch (IndexOutOfRangeException e) {
+                            Console.WriteLine("Pokus o cteni tretiho radku ktery neni.");
+                        }
+                        catch (Exception e) {
+                            Console.WriteLine("Nejaka dalsi vyjimka?\n" + e.Message + "\n" + e.StackTrace);
+                        }
                 }
                 catch (FileNotFoundException e) { // problem az za behu
                     Console.WriteLine("Soubor neexistuje. " + e.Message);

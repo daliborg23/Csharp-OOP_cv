@@ -15,7 +15,8 @@ namespace _5Files {
             };
             string cesta = "C:\\Kurs\\Soubor6.txt";
             FileInfo fileInfo = new FileInfo(cesta);
-            if (fileInfo.Directory.Exists) {
+            //File.Exists(cesta);
+            if (fileInfo.Directory.Exists) { // File.Exists(cesta)
                 File.WriteAllLines(cesta, listText);
                 List<string> listPrecteni = new List<string>(File.ReadAllLines(cesta));
                 foreach (string radek in listPrecteni) {
