@@ -141,10 +141,10 @@ namespace _4Point9 {
             this.height = height;
         }
         public double surface() {
-            return Math.Round(2 * this.area() + this.perimeter() * height, 2);
+            return Math.Round(2 * base.area() + base.perimeter() * height, 2);
         }
         public double volume() {
-            return Math.Round(this.area() * height, 2);
+            return Math.Round(base.area() * height, 2);
         }
         public override string ToString() {
             return $"Valec s objemem: {volume()}cm3, Povrchem: {surface()}cm2, Podstavou: {base.ToString()} stred je v bode: {base.center.ToString()}";
