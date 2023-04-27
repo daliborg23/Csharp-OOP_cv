@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CsharpExerciseOnComposition {
+    class SpatnyPrumerException : Exception {
+        public SpatnyPrumerException(string s) : base(s) {
+
+        }
+    }
     public class Student {
         private string firstName;
         private string lastName;
@@ -24,5 +29,13 @@ namespace CsharpExerciseOnComposition {
         public override string ToString() {
             return $"| Name: {FirstName,-8} {LastName,-8} | Age: {Age,2} | Average: {Average,5} |";
         }
+        public void Zkouska(double znamka) { 
+            average = Math.Round((average + znamka) / 2.00,2);
+            if (average > 4.00) {
+                Console.WriteLine(FirstName + " " + LastName + " prumer znakem: " + average);
+                throw new SpatnyPrumerException("Spatny prumer. ");
+            }
+        }
+
     }
 }

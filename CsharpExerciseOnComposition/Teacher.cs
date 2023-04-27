@@ -16,18 +16,21 @@ namespace CsharpExerciseOnComposition {
         public double Age { get => age; set => age = value; }
         public int Salary { get => salary; set => salary = value; }
         public int PupilsInClass { get => pupilsInClass; set => pupilsInClass = value; }
-        public string FullName() {
-            return FirstName + " " + LastName;
-        }
         public Teacher(string firstName, string lastName, double age) {
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Age = age;
             this.Salary = 15000; // zaklad
         }
+        public string FullName() {
+            return FirstName + " " + LastName;
+        }
         public void salaryBonus() {
             Salary += (Salary * PupilsInClass * 5) / 100;
             Console.WriteLine("Salary Bonus: " + Salary);
+        }
+        public override string ToString() {
+            return "| Tridni ucitel: " + this.FullName() + "                         |\n";
         }
     }
 }

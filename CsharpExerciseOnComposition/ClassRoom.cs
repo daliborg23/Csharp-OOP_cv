@@ -42,6 +42,7 @@ namespace CsharpExerciseOnComposition {
                 Console.WriteLine("Pridan student " + student.FirstName + " " + student.LastName);
                 return true;
             }
+            // pridani studenta vzdy na konec asi ok
         }
         public bool removeStudent(Student student) {
             if (Students.Length == 0) {
@@ -49,10 +50,26 @@ namespace CsharpExerciseOnComposition {
                 return false;
             }
             else {
-                Students[CurrentNumberOfStudents--] = student;
                 Console.WriteLine("Odebran student " + student.FirstName + " " + student.LastName);
+                for (int i = 0; i < CurrentNumberOfStudents; i++) {
+                    if (Students[i] != null && Students[i].Equals(student)) {
+                        Students[i] = null;
+                        break;
+                    }
+                }
+                for (int i = 0; i < Students.Count() - 1; i++) {
+                    for (int j = 1; j < Students.Count() - 1; j++) { 
+                        if (Students[i] == null) {
+                            Students[i] = Students[i + 1];
+                            Students[i + 1] = null;
+                        }
+                    }
+                }
+                CurrentNumberOfStudents -= 1;
                 return true;
             }
+            // pri odebrani studenta nekde uprostred se musi cele pole setrepat
+            // List > pole...
         }
         public bool addTeacher(Teacher teacher) {
             if (Teacher != null) {
@@ -79,11 +96,14 @@ namespace CsharpExerciseOnComposition {
         public override string ToString() {
             string s = "------------------------------------------------------\n";
             s += "| Tridni ucitel: " + Teacher.FullName() + "                         |\n";
+            //s += Teacher.ToString();
             s += "------------------------------------------------------\n";
-            s += "| Seznam zaku:                                       |\n";
+            s += "| Seznam zaku:                            celkem: " + CurrentNumberOfStudents.ToString("D2") + " |\n";
             s += "------------------------------------------------------\n";
             foreach (Student student in Students) {
+                if (student != null) { 
                 s += student.ToString() + "\n";
+                }
             }
             s += "------------------------------------------------------\n";
             return s;
