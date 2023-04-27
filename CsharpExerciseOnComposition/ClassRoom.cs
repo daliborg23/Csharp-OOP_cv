@@ -16,7 +16,10 @@ namespace CsharpExerciseOnComposition {
 
         public Teacher Teacher {
             get { return teacher; }
-            set { teacher = value; }
+            set { 
+                teacher = value;
+                if (Teacher != null) teacher.PupilsInClass = Students.Count();
+            }
         }
         public Student[] Students {
             get { return students; }
@@ -48,6 +51,28 @@ namespace CsharpExerciseOnComposition {
             else {
                 Students[CurrentNumberOfStudents--] = student;
                 Console.WriteLine("Odebran student " + student.FirstName + " " + student.LastName);
+                return true;
+            }
+        }
+        public bool addTeacher(Teacher teacher) {
+            if (Teacher != null) {
+                Console.WriteLine("Trida uz tridniho ucitele ma.");
+                return false;
+            }
+            else {
+                this.Teacher = teacher;
+                Console.WriteLine("Novy tridni ucitel " + Teacher.FullName() + " prirazen do tridy.");
+                return true;
+            }
+        }
+        public bool removeTeacher(Teacher teacher) {
+            if (Teacher == null) {
+                Console.WriteLine("Trida zadneho tridniho ucitele nema.");
+                return false;
+            }
+            else {
+                Console.WriteLine("Tridni ucitel " + Teacher.FullName() + " odebran ze tridy.");
+                Teacher = null; // ?
                 return true;
             }
         }
