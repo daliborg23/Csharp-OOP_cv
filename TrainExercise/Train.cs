@@ -44,7 +44,6 @@ namespace TrainExercise {
 				Console.WriteLine("Pridani prvniho vagonu za lokomotivu\nPridan do soupravy " + wagon.ToString());
 				Wagons = new List<IConnectable>();
 				Wagons.Add(wagon); // ?
-								   //throw;
 			}
 		}
 		public void DisconnectWagon(IConnectable wagon) {
@@ -57,32 +56,32 @@ namespace TrainExercise {
 					if (seatNumber <= ((PersonalWagon)wagons[cisloWagonu - 1]).NumberOfChairs && seatNumber > 0) {
 						if (((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved == false) {
 							((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved = true;
-							Console.WriteLine($"Misto c. {seatNumber} ve vagonu {cisloWagonu} bylo rezervováno.");
+							Console.WriteLine($"Misto c. {seatNumber} ve vagonu {cisloWagonu} bylo rezervovano.");
 						}
 						else {
-							Console.WriteLine("Misto je jiz rezervovano");
+							Console.WriteLine("Misto uz nekdo rezervoval");
 						}
 					}
 					else {
-						Console.WriteLine("Tolik míst v tomto vagonu není");
+						Console.WriteLine("Neni misto ve vagonu.");
 					}
 				}
 				else {
-					Console.WriteLine("Tolik vagonu zde není");
+					Console.WriteLine("Tak dlouhy vlak neni.");
 				}
 			}
 			else {
-				Console.WriteLine($"Tento vagon nemá místa k sezeni");
+				Console.WriteLine($"Tohle neni vagon pro cestujici.");
 			}
 		}
 		public void ListReservedChairs() {
 			// vypise reservovane sedadla
 			foreach (IConnectable wagon in Wagons) {
 				if (wagon is PersonalWagon) {
-					Console.WriteLine("Rezervovana mista ve vagonu:\n");
+					Console.WriteLine($"Rezervovana mista ve vagonu {wagon.GetType().Name}:");
 					foreach (Chair chair in ((PersonalWagon)wagon).Sits) {
 						if (chair.Reserved == true) {
-							Console.WriteLine(chair);
+							Console.WriteLine($"Pozice: {chair.Number}");
 						}
 					}
 				}

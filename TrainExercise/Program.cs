@@ -62,12 +62,20 @@ namespace TrainExercise {
 
             //((PersonalWagon)train2.Wagons[3]).Sits.Add(new Chair(1,false));
             train2.ReserveChair(2, 2);
+            train2.ReserveChair(3, 3);
+            train2.ReserveChair(3, 4);
+            train2.ReserveChair(4, 30);
+
             train2.ReserveChair(6,1);
             Console.WriteLine("------- Rezervace stejneho sedadla");
             train2.ReserveChair(2, 2);
-
-
-
+            Console.WriteLine("-------");
+            // vypis reservovanych sedadel
+            train2.ListReservedChairs();
+            Console.WriteLine("-------");
+            Console.WriteLine(train.ToString());
+            Console.WriteLine("-------");
+            Console.WriteLine(train2.ToString());
         }
     }
 }
