@@ -10,7 +10,7 @@ namespace TrainExercise {
         void ConnectWagon(Train train);
         void DisconnectWagon(Train train);
     }
-    public abstract class PersonalWagon {
+    public class PersonalWagon {
 		private List<Door> doors;
 		private List<Chair> sits;
 		private int numberOfChairs;
@@ -30,16 +30,12 @@ namespace TrainExercise {
 		}
 		#endregion
 		public PersonalWagon(int numberOfChairs) {
-			NumberOfChairs = numberOfChairs;
-            // nevim
-		}
-	   //     public abstract Train ConnectToTrain() {
-				//// if engine = parni && vagony > 5 => problem
-	   //     }
-	   //     public abstract Train DisconnectFromTrain() {
-				//// je vlak pripojeny k onomu vlaku? 
-	   //     }
-        //Train ConnectWagon();
-        //Train DisconnectWagon();
+			this.NumberOfChairs = numberOfChairs;
+			this.Doors = new List<Door>();
+			this.Sits = new List<Chair>(numberOfChairs);
+			for (int i = 0; i <= numberOfChairs; i++) {
+				Sits.Add(new Chair(i, false));
+            }
+        }
     }
 }

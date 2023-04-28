@@ -61,7 +61,10 @@ namespace TrainExercise {
             Train train2 = new Train(lokoEle,souprava2);
 
             //((PersonalWagon)train2.Wagons[3]).Sits.Add(new Chair(1,false));
-            train2.ReserveChair(1, 1);
+            train2.ReserveChair(2, 2);
+            train2.ReserveChair(6,1);
+            Console.WriteLine("------- Rezervace stejneho sedadla");
+            train2.ReserveChair(2, 2);
 
 
 

@@ -26,7 +26,7 @@ namespace TrainExercise {
 		public Chair(int number, bool nearwindow) {
 			Number = number;
 			NearWindow = nearwindow;
-			Reserved = true;
+			//Reserved = true;
         }
     }
 }
