@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1Prvni", "1Prvni\1Prvni.csproj", "{3D38A1F1-8A66-4652-8ADF-D5852FBCD21A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2Rozhrani", "1Rozhrani\2Rozhrani.csproj", "{2DAAE6FD-24EE-49CF-897B-0F8E329F66E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2Rozhrani", "2Rozhrani\2Rozhrani.csproj", "{2DAAE6FD-24EE-49CF-897B-0F8E329F66E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpExerciseOnClasses1", "CsharpExerciseOnClasses1\CsharpExerciseOnClasses1.csproj", "{831E817D-370E-46DA-BFB4-164DBC52C640}"
 EndProject
@@ -19,11 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpExerciseOnClasses2c",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4Point", "4Point\4Point.csproj", "{5DF2EC21-20D5-441F-B28F-99EC20D3BAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpExerciseOnComposition", "CsharpExerciseOnComposition\CsharpExerciseOnComposition.csproj", "{F8636222-97E4-4FFB-9B46-9DA126FBB7B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsharpExerciseOnComposition", "CsharpExerciseOnComposition\CsharpExerciseOnComposition.csproj", "{F8636222-97E4-4FFB-9B46-9DA126FBB7B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5Files", "5Files\5Files.csproj", "{500E6479-D18C-4E29-AE70-814162A6A64C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5Files", "5Files\5Files.csproj", "{500E6479-D18C-4E29-AE70-814162A6A64C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainExercise", "TrainExercise\TrainExercise.csproj", "{D615F6B6-88CB-4128-AF90-8EACD6128E6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainExercise", "TrainExercise\TrainExercise.csproj", "{D615F6B6-88CB-4128-AF90-8EACD6128E6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpExerciseOnComposition2", "CsharpExerciseOnComposition2\CsharpExerciseOnComposition2.csproj", "{D932C855-5567-4E71-8DBE-671DCFA99AB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{D615F6B6-88CB-4128-AF90-8EACD6128E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D615F6B6-88CB-4128-AF90-8EACD6128E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D615F6B6-88CB-4128-AF90-8EACD6128E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D932C855-5567-4E71-8DBE-671DCFA99AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D932C855-5567-4E71-8DBE-671DCFA99AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D932C855-5567-4E71-8DBE-671DCFA99AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D932C855-5567-4E71-8DBE-671DCFA99AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
