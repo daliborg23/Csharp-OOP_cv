@@ -12,14 +12,12 @@ using System.Windows.Forms;
 
 namespace ThreadSort {
     public class Form4 : Form {
-        int pocetFormularu;
         int[] poleCisel;
         public Form4(int[] arrayInput) {
             this.poleCisel = arrayInput;
             int rowWidth = 311;
             int rowHeight = 12;
             int spaceBetweenRows = 13;
-            pocetFormularu = 0;
             //
             // ProgressBars
             //
@@ -48,12 +46,11 @@ namespace ThreadSort {
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(rowWidth + spaceBetweenRows, pointY + spaceBetweenRows); // client size
-            this.Name = "Form " + pocetFormularu.ToString();
-            this.Text = "Form " + pocetFormularu.ToString();
+            this.Name = "Form";
+            this.Text = "Form";
             for (int iii = 0; iii < arrayInput.Length; iii++) {
                 this.Controls.Add(this.progressPole1[iii]);
             }
-            pocetFormularu++;
             this.ResumeLayout(false);
             this.SuspendLayout();
 
@@ -70,7 +67,7 @@ namespace ThreadSort {
             //        Console.WriteLine("Dalsi neni...");
             //        break;
             //}
-            Thread t1 = new Thread(PBBubbleSort); t1.Start();
+            //Thread t1 = new Thread(PBBubbleSort); t1.Start();
             //Thread t2 = new Thread(PBMergeSort); t2.Start();
         }
         public void PBBubbleSort() {

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace ThreadSort {
     public class Form2 : Form {
+            static int cisloFormu = 1;
         public Form2(int[] arrayInput) {
             //
             // ProgressBars
@@ -40,8 +41,8 @@ namespace ThreadSort {
             this.AutoScaleDimensions = new SizeF(6F, 13F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(336, 330);
-            this.Name = "Form2"; // i++
-            this.Text = "Form2";
+            this.Name = "Form " + cisloFormu;
+            this.Text = "Form " + cisloFormu++;
             for (int iii = 0; iii < arrayInput.Length; iii++) {
                 this.Controls.Add(this.progressPole1[iii]);
             }

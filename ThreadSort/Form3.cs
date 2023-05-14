@@ -57,12 +57,14 @@ namespace ThreadSort {
             // pocetFormularu++ 0 = buuble, 1 = merge?
             switch (pocetFormularu) { // asi funguje ale neni idealni
                 case 0:
-                    Thread t1 = new Thread(PBBubbleSort); t1.Start();
+                    //Thread t1 = new Thread(PBBubbleSort); t1.Start();
                     pocetFormularu++;
+                    PBBubbleSort();
                     break;
                 case 1:
-                    Thread t2 = new Thread(PBMergeSort); t2.Start();
+                    //Thread t2 = new Thread(PBMergeSort); t2.Start();
                     pocetFormularu++;
+                    PBMergeSort();
                     break;
                 default:
                     Console.WriteLine("Dalsi neni...");

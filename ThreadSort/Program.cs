@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ThreadSort {
     internal static class Program {
-        [STAThread]
+        [MTAThread]
         static void Mainx() {
             Thread threadMain = new Thread(formStart1);
             threadMain.Start();

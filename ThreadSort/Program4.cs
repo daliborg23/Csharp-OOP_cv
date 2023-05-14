@@ -7,8 +7,9 @@ using System.Windows.Forms;
 
 namespace ThreadSort {
     internal static class Program4 {
-        [STAThread]
+        [MTAThread]
         static void Mainx() {
+
             Thread threadMain = new Thread(formStart1);
             threadMain.Start();
             Thread threadMain2 = new Thread(formStart2);
@@ -24,6 +25,7 @@ namespace ThreadSort {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form4 f1 = new Form4(pole1);
+            f1.Text = "Form 1";
             //f1.SetDesktopLocation(1000, 1000);
             //Thread threadSort = new Thread(f2.sortProgressBars);
             //Application.Run(f2);
@@ -39,6 +41,7 @@ namespace ThreadSort {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form4 f2 = new Form4(pole2);
+            f2.Text = "Form 2";
             f2.SetDesktopLocation(1150, 370); // ojeb
             //Thread threadSort = new Thread(f2.sortProgressBars);
             //Application.Run(f2);
