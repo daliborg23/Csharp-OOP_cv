@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ThreadSort {
@@ -22,6 +25,7 @@ namespace ThreadSort {
         static int posY;
         private System.Windows.Forms.Timer timer;
         private int timerCount;
+        BackgroundWorker bgw = new BackgroundWorker();
         public Form5(int[] arrayInput, string typRazeni) {
             this.timer = new System.Windows.Forms.Timer();
             this.poleCisel = arrayInput;
@@ -76,7 +80,6 @@ namespace ThreadSort {
             this.ResumeLayout(false);
             this.SuspendLayout();
         }
-
         private void timer_Tick(object sender, EventArgs e) {
             timerCount++;
             if (timerCount > 1) {
@@ -116,6 +119,35 @@ namespace ThreadSort {
                 }
             }
         }
+        public void PBBubbleSort() {
+            int i = 0;
+            int pbTempVal;
+            for (int j = 0; j < progressPole1.Length - 1; j++) {
+                for (i = 0; i < progressPole1.Length - 1 - j; i++) {
+                    if (progressPole1[i].Value > progressPole1[i + 1].Value) {
+                        try {
+                            pbTempVal = progressPole1[i].Value;
+                            progressPole1[i].Value = progressPole1[i + 1].Value;        // try mozna muzu zkusit smazat
+                            progressPole1[i + 1].Value = pbTempVal;
+                            //progressPole1[i].Refresh();
+                        }
+                        catch (Exception) { // +		$exception	{"Cross-thread operation not valid: Control 'ProgressBar1' accessed from a thread other than the thread it was created on."}	System.InvalidOperationException !!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                            throw;
+                        }
+                    }
+                    Thread.Sleep(50);
+                }
+            }
+        }
+        //public void UpdateProgressBar(int value) {
+        //    if (progressPole1[0].InvokeRequired) {
+        //        progressPole1[0].Invoke(new MethodInvoker(() => progressPole1[0].Value = value));
+        //    }
+        //    else {
+        //        progressPole1[0].Value = value;
+        //    }
+        //}
         public void PBBubbleSort2() {
             int i = 0;
             for (int j = 0; j < progressPole1.Length - 1; j++) {
@@ -133,7 +165,7 @@ namespace ThreadSort {
                         }
                         catch (Exception) { // +		$exception	{"Cross-thread operation not valid: Control 'ProgressBar1' accessed from a thread other than the thread it was created on."}	System.InvalidOperationException !!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                            //throw;
+                            throw;
                         }
                     }
                     Thread.Sleep(50);

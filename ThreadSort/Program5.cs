@@ -17,16 +17,16 @@ namespace ThreadSort {
             }
             Form5 f1 = new Form5(poleCisel, "bubble"); 
             Form5 f2 = new Form5(poleCisel, "bubble");
-            Thread t1 = new Thread(f1.PBBubbleSort2);
-            Thread t2 = new Thread(f2.PBBubbleSort2);
+            Thread t1 = new Thread(f1.PBBubbleSort);
+            Thread t2 = new Thread(f2.PBBubbleSort);
+            t1.Start();
+            t2.Start();
             //Application.Run(f1);
             //Application.Run(f2);
             f1.Show();
             f2.Show();
-            Thread.Sleep(1000);
-            t1.Start();
-            t2.Start();
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
 
     }
