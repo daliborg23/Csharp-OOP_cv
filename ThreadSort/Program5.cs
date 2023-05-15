@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ThreadSort {
-    internal static class Program5 {
+    public class Program5 {
         [STAThread]
-        static void Mainx() {
-            int[] poleCisel = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
+        static void Main() {
             //int[] poleCisel = new int[15];
             //Random r = new Random();
             //for (int i = 0; i < 15; i++) {
             //    poleCisel[i] = r.Next(1, 101);
             //}
-            Form5 f1 = new Form5(poleCisel, "bubble"); 
-            Form5 f2 = new Form5(poleCisel, "bubble");
+            int[] poleCisel1 = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
+            int[] poleCisel2 = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
+            int[] poleCisel3 = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
+
+            Form5 f1 = new Form5(poleCisel1, "BubbleSortSimple"); 
+            Form5 f2 = new Form5(poleCisel2, "BubbleSortOptim");
+            Form5 f3 = new Form5(poleCisel3, "SelectionSort");
 
             Thread t1 = new Thread(() => {
                 Application.Run(f1);
@@ -26,40 +30,29 @@ namespace ThreadSort {
                 Application.Run(f2);
             });
 
+            Thread t3 = new Thread(() => {
+                Application.Run(f3);
+            });
+
             t1.Start();
             t2.Start();
+            t3.Start();
 
             Thread.Sleep(1000); // Add a delay to ensure both forms have started before continuing
 
             Thread sortThread1 = new Thread(f1.PBBubbleSort);
-            Thread sortThread2 = new Thread(f2.PBBubbleSort);
+            Thread sortThread2 = new Thread(f2.PBBubbleSortOptim);
+            Thread sortThread3 = new Thread(f3.SelectionSort);
 
             sortThread1.Start();
             sortThread2.Start();
-        }
+            sortThread3.Start();
 
+            Thread.Sleep(10000);
+            DialogResult dialogResult = MessageBox.Show("Zavrit vse?", "Konec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.OK) { // Msgbox nevyskakuje do popredi
+                Environment.Exit(0);
+            }
+        }
     }
 }
-
-        //Application.EnableVisualStyles();
-        //Application.SetCompatibleTextRenderingDefault(false);
-        //Form5 f1 = new Form5(poleCisel, "bubble"); Form5 f2 = new Form5(poleCisel, "bubble");
-        //Application.Run(new MultiFormContext(f1, f2));
-
-        //public class MultiFormContext : ApplicationContext {
-        //    private int openForms;
-        //    public MultiFormContext(params Form5[] forms) {
-        //        openForms = forms.Length;
-        //        foreach (var form in forms) {
-        //            form.FormClosed += (s, args) =>
-        //            {
-        //                //When we have closed the last of the "starting" forms, 
-        //                //end the program.
-        //                if (Interlocked.Decrement(ref openForms) == 0)
-        //                    ExitThread();
-        //            };
-        //            form.Show();
-        //        }
-        //    }
-
-        //}

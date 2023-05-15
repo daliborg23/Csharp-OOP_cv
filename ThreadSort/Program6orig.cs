@@ -20,7 +20,7 @@ namespace VlaknaTrideni {
         private static Thread t3;
         private static Thread t4;
         [STAThread]
-        static void Main() {
+        static void Mainx() {
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
 
@@ -152,9 +152,9 @@ namespace VlaknaTrideni {
                         cisla3[j + 1] = pbTempVal;
                         currentSwapIndex = j + 1;
                     }
+                    indexLoopIn++;
                     form3.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     Thread.Sleep(50);
-                    indexLoopIn++;
                 }
                 lastSwapIndex = currentSwapIndex;
                 indexLoopOut++;
