@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace ThreadSort {
     internal static class Program5 {
         [STAThread]
-        static void Main() {
+        static void Mainx() {
             //int[] poleCisel = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
             int[] poleCisel = new int[15];
             Random r = new Random();

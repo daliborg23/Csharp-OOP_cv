@@ -119,7 +119,7 @@ namespace ThreadSort {
                 }
             }
         }
-        public void PBBubbleSort() {
+        public void PBBubbleSort() { // bubble, selection, quick
             int i = 0;
             int pbTempVal;
             for (int j = 0; j < progressPole1.Length - 1; j++) {

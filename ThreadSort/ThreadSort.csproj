@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form6orig.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form5orig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +75,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program6orig.cs" />
     <Compile Include="Program5orig.cs" />
     <Compile Include="Program4orig.cs" />
     <Compile Include="Program5.cs" />
