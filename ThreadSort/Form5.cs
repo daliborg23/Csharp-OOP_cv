@@ -80,74 +80,39 @@ namespace ThreadSort {
             this.ResumeLayout(false);
             this.SuspendLayout();
         }
-        private void timer_Tick(object sender, EventArgs e) {
+        private async void timer_Tick(object sender, EventArgs e) {
             timerCount++;
             if (timerCount > 1) {
                 if (typRazeni == "bubble") {
-                    //Thread thread = new Thread(() => {
-                    //    this.BeginInvoke((Action)delegate () {
-                    //        int i = 0;
-                    //        for (int j = 0; j < progressPole1.Length - 1; j++) {
-                    //            for (i = 0; i < progressPole1.Length - 1 - j; i++) {
-                    //                if (progressPole1[i].Value > progressPole1[i + 1].Value) {
-                    //                    //ProgressBar pbTemp;
-                    //                    //pbTemp = progressPole1[i];
-                    //                    //progressPole1[i] = progressPole1[i + 1];
-                    //                    //progressPole1[i + 1] = pbTemp;
-                    //                    try {
-                    //                        int pbTempVal = progressPole1[i].Value;
-                    //                        progressPole1[i].Value = progressPole1[i + 1].Value;        // try mozna muzu zkusit smazat
-                    //                        progressPole1[i + 1].Value = pbTempVal;
-                    //                        //progressPole1[i].Refresh();
-                    //                    }
-                    //                    catch (Exception) { // +		$exception	{"Cross-thread operation not valid: Control 'ProgressBar1' accessed from a thread other than the thread it was created on."}	System.InvalidOperationException !!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                    //                        throw;
-                    //                    }
-                    //                }
-                    //                Thread.Sleep(50);
-                    //            }
-                    //        }
-                    //    });
-                    //});
-                    //thread.IsBackground = true;
-                    //thread.Start();
+                    //await Task.Run(() => PBBubbleSort());
                 }
                 else if (typRazeni == "merge") {
-                    PBMergeSort();
-                    //PBBubbleSort2();
+                    //await Task.Run(() => PBMergeSort());
                 }
             }
         }
-        public void PBBubbleSort() { // bubble, selection, quick
-            int i = 0;
-            int pbTempVal;
-            for (int j = 0; j < progressPole1.Length - 1; j++) {
-                for (i = 0; i < progressPole1.Length - 1 - j; i++) {
-                    if (progressPole1[i].Value > progressPole1[i + 1].Value) {
-                        try {
-                            pbTempVal = progressPole1[i].Value;
-                            progressPole1[i].Value = progressPole1[i + 1].Value;        // try mozna muzu zkusit smazat
-                            progressPole1[i + 1].Value = pbTempVal;
-                            //progressPole1[i].Refresh();
-                        }
-                        catch (Exception) { // +		$exception	{"Cross-thread operation not valid: Control 'ProgressBar1' accessed from a thread other than the thread it was created on."}	System.InvalidOperationException !!!!!!!!!!!!!!!!!!!!!!!!!!
+        public void PBBubbleSort() {
+            int n = progressPole1.Length;
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (progressPole1[j].Value > progressPole1[j + 1].Value) {
+                        if (progressPole1[j].InvokeRequired || progressPole1[j + 1].InvokeRequired) {
+                            int pbTempVal = progressPole1[j].Value;
+                            int pbNextVal = progressPole1[j + 1].Value;
 
-                            throw;
+                            progressPole1[j].BeginInvoke(new Action(() => progressPole1[j].Value = pbNextVal));
+                            progressPole1[j + 1].BeginInvoke(new Action(() => progressPole1[j + 1].Value = pbTempVal));
+                        }
+                        else {
+                            int pbTempVal = progressPole1[j].Value;
+                            progressPole1[j].Value = progressPole1[j + 1].Value;
+                            progressPole1[j + 1].Value = pbTempVal;
                         }
                     }
                     Thread.Sleep(50);
                 }
             }
         }
-        //public void UpdateProgressBar(int value) {
-        //    if (progressPole1[0].InvokeRequired) {
-        //        progressPole1[0].Invoke(new MethodInvoker(() => progressPole1[0].Value = value));
-        //    }
-        //    else {
-        //        progressPole1[0].Value = value;
-        //    }
-        //}
         public void PBBubbleSort2() {
             int i = 0;
             for (int j = 0; j < progressPole1.Length - 1; j++) {

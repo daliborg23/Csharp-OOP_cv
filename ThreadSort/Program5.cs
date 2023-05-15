@@ -9,24 +9,33 @@ namespace ThreadSort {
     internal static class Program5 {
         [STAThread]
         static void Mainx() {
-            //int[] poleCisel = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
-            int[] poleCisel = new int[15];
-            Random r = new Random();
-            for (int i = 0; i < 15; i++) {
-                poleCisel[i] = r.Next(1, 101);
-            }
+            int[] poleCisel = { 99, 22, 12, 84, 35, 62, 85, 25, 32, 47, 91, 12, 65, 88, 11 };
+            //int[] poleCisel = new int[15];
+            //Random r = new Random();
+            //for (int i = 0; i < 15; i++) {
+            //    poleCisel[i] = r.Next(1, 101);
+            //}
             Form5 f1 = new Form5(poleCisel, "bubble"); 
             Form5 f2 = new Form5(poleCisel, "bubble");
-            Thread t1 = new Thread(f1.PBBubbleSort);
-            Thread t2 = new Thread(f2.PBBubbleSort);
+
+            Thread t1 = new Thread(() => {
+                Application.Run(f1);
+            });
+
+            Thread t2 = new Thread(() => {
+                Application.Run(f2);
+            });
+
             t1.Start();
             t2.Start();
-            //Application.Run(f1);
-            //Application.Run(f2);
-            f1.Show();
-            f2.Show();
-            //Thread.Sleep(1000);
-            //Thread.Sleep(1000);
+
+            Thread.Sleep(1000); // Add a delay to ensure both forms have started before continuing
+
+            Thread sortThread1 = new Thread(f1.PBBubbleSort);
+            Thread sortThread2 = new Thread(f2.PBBubbleSort);
+
+            sortThread1.Start();
+            sortThread2.Start();
         }
 
     }

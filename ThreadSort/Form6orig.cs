@@ -6,9 +6,11 @@ namespace VlaknaTrideni {
     public class Form6orig : Form {
         ProgressBar[] progressBars;
         int[] data;
+        DateTime dtn;
         public Form6orig(int[] data) {
             progressBars = new ProgressBar[data.Length];
             this.data = data;
+            this.dtn = DateTime.Now;
             int rowHeight = 20; int rowWidth = 400; int spaceBetweenRows = 10;
             int pbCount = 15; int margin = 10;
             for (int x = 0; x < data.Length; x++) {
@@ -25,18 +27,26 @@ namespace VlaknaTrideni {
             Name = "Form6"; Text = "Form6";
             //showData();
         }
-        public void showData(int indexA, int indexB) {
+        public void showData(int indexA, int indexB, int indexC) {
+            
             for (int i = 0; i < progressBars.Length; i++) {
-                if (i == indexA || i == indexB) {
+                this.Text = (indexC + 1).ToString() + " - " + (DateTime.Now - dtn).TotalMilliseconds+"ms";
+
+
+                progressBars[i].Value = data[i];
+                if (i == indexA)
+                {
                     progressBars[i].ForeColor = Color.Red;
                 }
-                else if (i > indexB) {
-                    progressBars[i].ForeColor = Color.Blue;
-                }
-                else {
+                else if (i == indexB)
+                {
                     progressBars[i].ForeColor = Color.Orange;
                 }
-                progressBars[i].Value = data[i];
+                else
+                {
+                    progressBars[i].ForeColor = Color.Black;
+                }
+
                 progressBars[i].Refresh();
             }
         }
