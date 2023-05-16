@@ -6,21 +6,52 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace VlaknaTrideni {
-    class Program6orig { // ThreadSort6-8a
+    class Program6orig8b { // ThreadSort8b
+        #region fields
         static int[] cisla1;
         static int[] cisla2;
         static int[] cisla3;
         static int[] cisla4;
-        static Form6orig form1;
-        static Form6orig form2;
-        static Form6orig form3;
-        static Form6orig form4;
+        static Form6orig8b form1;
+        static Form6orig8b form2;
+        static Form6orig8b form3;
+        static Form6orig8b form4;
         private static Thread t1;
         private static Thread t2;
         private static Thread t3;
         private static Thread t4;
+        static EventWaitHandle t1WaitOne = new AutoResetEvent(false);
+        static EventWaitHandle t2WaitOne = new AutoResetEvent(false);
+        static EventWaitHandle t3WaitOne = new AutoResetEvent(false);
+        static EventWaitHandle t4WaitOne = new AutoResetEvent(false);
+        static EventWaitHandle t1Set = new AutoResetEvent(false);
+        static EventWaitHandle t2Set = new AutoResetEvent(false);
+        static EventWaitHandle t3Set = new AutoResetEvent(false);
+        static EventWaitHandle t4Set = new AutoResetEvent(false);
+        static bool tEnd1 = false;
+        static bool tEnd2 = false;
+        static bool tEnd3 = false;
+        static bool tEnd4 = false;
+        static int t1LoopIndexOut;
+        static int t1LoopIndexIn;
+        static int t1LoopIndex;       
+        static int t1LoopIndexPlusOne;
+        static int t2LoopIndexOut;
+        static int t2LoopIndexIn;
+        static int t2LoopIndex;
+        static int t2LoopIndexPlusOne;
+        static int t3LoopIndexOut;
+        static int t3LoopIndexIn;
+        static int t3LoopIndex;
+        static int t3LoopIndexPlusOne;
+        static int t4LoopIndexOut;
+        static int t4LoopIndexIn;
+        static int t4LoopIndex;
+        static int t4LoopIndexPlusOne;
+        #endregion
+
         [STAThread]
-        static void Main() {
+        static void Mainx() {
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
 
@@ -48,49 +79,73 @@ namespace VlaknaTrideni {
 
             Thread.Sleep(1000);
 
-            Form6orig f6orig1 = new Form6orig(data1);
+            #region forms
+            Form6orig8b f6orig1 = new Form6orig8b(data1);
             int form1origLocX = 100;
             int form1origLocY = 100;
             form1 = f6orig1;
             cisla1 = data1;
+            t1LoopIndexOut = 0;
+            t1LoopIndexIn = 0;
+            t1LoopIndex = 0;
+            t1LoopIndexPlusOne = 0;
             f6orig1.Show();
             f6orig1.DesktopLocation = new Point(form1origLocX, form1origLocY);
-            Form6orig f6orig2 = new Form6orig(data2);
+            Form6orig8b f6orig2 = new Form6orig8b(data2);
             form2 = f6orig2;
             cisla2 = data2;
+            t2LoopIndexOut = 0;
+            t2LoopIndexIn = 0;
+            t2LoopIndex = 0;
+            t2LoopIndexPlusOne = 0;
             f6orig2.Show();
             form1origLocX += 320;
             f6orig2.Location = new Point(form1origLocX, form1origLocY);
-            Form6orig f6orig3 = new Form6orig(data3);
+            Form6orig8b f6orig3 = new Form6orig8b(data3);
             form3 = f6orig3;
             cisla3 = data3;
+            t3LoopIndexOut = 0;
+            t3LoopIndexIn = 0;
+            t3LoopIndex = 0;
+            t3LoopIndexPlusOne = 0;
             f6orig3.Show();
             form1origLocX += 320;
             f6orig3.Location = new Point(form1origLocX, form1origLocY);
-            Form6orig f6orig4 = new Form6orig(data4);
+            Form6orig8b f6orig4 = new Form6orig8b(data4);
             form4 = f6orig4;
             cisla4 = data4;
+            t4LoopIndexOut = 0;
+            t4LoopIndexIn = 0;
+            t4LoopIndex = 0;
+            t4LoopIndexPlusOne = 0;
             f6orig4.Show();
             form1origLocX += 320;
             f6orig4.Location = new Point(form1origLocX, form1origLocY);
+            #endregion
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
-            t1 = new Thread(bubbleSortSimple);
-            t2 = new Thread(bubbleSort);
-            t3 = new Thread(bubbleSortOptim);
-            t4 = new Thread(SelectionSort);
+            t1 = new Thread(bubbleSortSimple); t1.Start();
+            t2 = new Thread(bubbleSort); t2.Start();
+            t3 = new Thread(bubbleSortOptim); t3.Start();
+            t4 = new Thread(SelectionSort);  t4.Start();
 
-            t1.Start();
-            t2.Start();
-            t3.Start();
-            t4.Start();
+            while (!tEnd1 || !tEnd2 || !tEnd3 || !tEnd4) {
+                form1.showData(t1LoopIndex, t1LoopIndexPlusOne, t1LoopIndexOut, t1LoopIndexIn, "bubbleSortSimple");
+                form2.showData(t2LoopIndex, t2LoopIndexPlusOne, t2LoopIndexOut, t2LoopIndexIn, "bubbleSort");
+                form3.showData(t3LoopIndex, t3LoopIndexPlusOne, t3LoopIndexOut, t3LoopIndexIn, "bubbleSortOptim");
+                form4.showData(t4LoopIndex, t4LoopIndexPlusOne, t4LoopIndexOut, t4LoopIndexIn, "SelectionSort");
+                if (!tEnd1) t1WaitOne.WaitOne();
+                if (!tEnd2) t2WaitOne.WaitOne();
+                if (!tEnd3) t3WaitOne.WaitOne();
+                if (!tEnd4) t4WaitOne.WaitOne();
+                t1Set.Set(); t2Set.Set(); t3Set.Set(); t4Set.Set();
+                Thread.Sleep(250);
+            }
 
-            t1.Join(); // ?
-            t2.Join();
-            t3.Join();
-            t4.Join();
-            Thread.Sleep(10000);
+            // System.Threading.ThreadStateException: 'Thread is not user-suspended; it cannot be resumed.'
+            
+            Thread.Sleep(10);
             DialogResult dialogResult = MessageBox.Show("Zavrit vse?", "Konec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.OK) { // Msgbox nevyskakuje do popredi
                 Environment.Exit(0);
@@ -108,14 +163,18 @@ namespace VlaknaTrideni {
                         cisla1[j] = cisla1[j + 1];
                         cisla1[j + 1] = pbTempVal;
                     }
-                    indexLoopIn++;
-                    form1.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     Thread.Sleep(50);
+                    indexLoopIn++;
+                    t1LoopIndex = j;
+                    t1LoopIndexPlusOne = j + 1;
+                    t1LoopIndexOut = indexLoopOut;
+                    t1LoopIndexIn = indexLoopIn;
+                    t1WaitOne.Set();
+                    t1Set.WaitOne();
                 }
                 indexLoopOut++;
-                Thread.Sleep(500);
             }
-            Thread.Sleep(1000);
+            tEnd1 = true;
         }
         private static void bubbleSort() {
             string name = "bubbleSort";
@@ -132,13 +191,18 @@ namespace VlaknaTrideni {
                         cisla2[j + 1] = pbTempVal;
                         swapOccured = true;
                     }
-                    indexLoopIn++;
-                    form2.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     Thread.Sleep(50);
+                    indexLoopIn++;
+                    t2LoopIndex = j;
+                    t2LoopIndexPlusOne = j+1;
+                    t2LoopIndexOut = indexLoopOut;
+                    t2LoopIndexIn = indexLoopIn;
+                    t2WaitOne.Set();
+                    t2Set.WaitOne();
                 }
                 indexLoopOut++;
-                Thread.Sleep(500);
             } while (swapOccured);
+            tEnd2 = true;
         }
         private static void bubbleSortOptim() { // 12904, 12749, 12751, 12760, 12684 // po upravach pomalejsi
             string name = "bubbleSortOptim";
@@ -156,14 +220,19 @@ namespace VlaknaTrideni {
                         cisla3[j + 1] = pbTempVal;
                         currentSwapIndex = j + 1;
                     }
-                    indexLoopIn++;
-                    form3.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     Thread.Sleep(50);
+                    indexLoopIn++;
+                    t3LoopIndex = j;
+                    t3LoopIndexPlusOne = j + 1;
+                    t3LoopIndexOut = indexLoopOut;
+                    t3LoopIndexIn = indexLoopIn;
+                    t3WaitOne.Set();
+                    t3Set.WaitOne();
                 }
                 lastSwapIndex = currentSwapIndex;
                 indexLoopOut++;
-                Thread.Sleep(500);
             } while (lastSwapIndex > 0);
+            tEnd3 = true;
         }
         //private static void bubbleSortOptim() { // 13225 13258 13182 13179 13308 13180
         //    string name = "bubbleSortOptim";
@@ -211,9 +280,14 @@ namespace VlaknaTrideni {
                     if (cisla4[j] < cisla4[minIndex]) {
                         minIndex = j;
                     }
-                    indexLoopIn++;
-                    form4.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     Thread.Sleep(50);
+                    indexLoopIn++;
+                    t4LoopIndex = j;
+                    t4LoopIndexPlusOne = j + 1;
+                    t4LoopIndexOut = indexLoopOut;
+                    t4LoopIndexIn = indexLoopIn;
+                    t4WaitOne.Set();
+                    t4Set.WaitOne();
                 }
 
                 if (minIndex != i) {
@@ -226,8 +300,8 @@ namespace VlaknaTrideni {
                     array[min] = temp;
                 }
                 indexLoopOut++;
-                Thread.Sleep(500);
             }
+            tEnd4 = true;
         }
     }
 }

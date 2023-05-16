@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace ThreadSort {
     public class Program5 {
         [STAThread]
-        static void Main() {
+        static void Mainx() {
             //int[] poleCisel = new int[15];
             //Random r = new Random();
             //for (int i = 0; i < 15; i++) {
@@ -38,7 +38,7 @@ namespace ThreadSort {
             t2.Start();
             t3.Start();
 
-            Thread.Sleep(1000); // Add a delay to ensure both forms have started before continuing
+            Thread.Sleep(1000);
 
             Thread sortThread1 = new Thread(f1.PBBubbleSort);
             Thread sortThread2 = new Thread(f2.PBBubbleSortOptim);

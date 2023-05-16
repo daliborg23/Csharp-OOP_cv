@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 
 namespace ThreadSort {
     public class Form5 : Form {
-        private ProgressBar[] progressPole1;
+        private System.Windows.Forms.ProgressBar[] progressPole1;
         static int pocetFormularu;
         int[] poleCisel;
         string typRazeni;
@@ -27,15 +29,15 @@ namespace ThreadSort {
             //
             // ProgressBars
             //
-            this.progressPole1 = new ProgressBar[arrayInput.Length];
+            this.progressPole1 = new System.Windows.Forms.ProgressBar[arrayInput.Length];
             for (int ii = 0; ii <= arrayInput.Length - 1; ii++) {
-                progressPole1[ii] = new ProgressBar();
+                progressPole1[ii] = new System.Windows.Forms.ProgressBar();
             }
             int i = 0;
             int pointX = 13;
             int pointY = 20;
 
-            foreach (ProgressBar pb in progressPole1) {
+            foreach (System.Windows.Forms.ProgressBar pb in progressPole1) {
                 pb.Location = new Point(pointX, pointY);
                 pb.Name = "ProgressBar" + (i + 1).ToString();
                 pb.Size = new Size(rowWidth, rowHeight);
@@ -94,6 +96,7 @@ namespace ThreadSort {
                     indexLoopIn++;
                     progressPole1[i].ForeColor = Color.DarkTurquoise;
                     progressPole1[i + 1].ForeColor = Color.DarkRed;
+
                     this.label1.Text = (indexLoopOut + 1).ToString() + " - " + (indexLoopIn + 1).ToString() + " - " + (DateTime.Now - dtn).TotalMilliseconds.ToString("N2") + "ms";
 
                     Thread.Sleep(50);
@@ -147,8 +150,6 @@ namespace ThreadSort {
                         minIndex = j;
                     }
                     indexLoopIn++;
-
-                    //form4.showData(j, j + 1, indexLoopOut, indexLoopIn, name);
                     progressPole1[i].ForeColor = Color.Tomato;
                     progressPole1[i + 1].ForeColor = Color.DarkSeaGreen;
                     this.label1.Text = (indexLoopOut + 1).ToString() + " - " + (indexLoopIn + 1).ToString() + " - " + (DateTime.Now - dtn).TotalMilliseconds.ToString("N2") + "ms";
@@ -159,7 +160,7 @@ namespace ThreadSort {
                 if (minIndex != i) {
                     SwapInts(progressPole1, i, minIndex);
                 }
-                void SwapInts(ProgressBar[] array, int index, int min) {
+                void SwapInts(System.Windows.Forms.ProgressBar[] array, int index, int min) {
                     // Swaps elements in an array.
                     int temp = array[index].Value;
                     array[index].Value = array[min].Value;
