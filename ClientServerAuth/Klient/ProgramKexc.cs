@@ -111,6 +111,7 @@ namespace Klient {
                     if (!isNumber) {
                         throw new InvalidCastException();
                     }
+                    if (cislo1 == 0) break; // pak nevypise priklad v klientovi ani na serveru.
                     Console.Write("Cislo 2 = ");
                     isNumber = Int32.TryParse(Console.ReadLine(), out cislo2);
                     if (!isNumber) {
@@ -126,11 +127,11 @@ namespace Klient {
                 catch (InvalidCastException e) {
                     Console.WriteLine("Zadana hodnota nelze prevezt na cislo. " + e.Message);
                 }
-                //finally {
-                //    cislo1 = 1;
-                //}
+                finally {
+                    cislo1 = 1;
+                }
 
-            } while (cislo1 != 0);
+            } while (cislo1 != 0); 
 
             Console.WriteLine("Odhlasit? Ano");
             Console.ReadKey();
