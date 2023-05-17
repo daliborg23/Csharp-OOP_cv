@@ -9,7 +9,7 @@ using ServerLib;
 
 namespace Klient {
     public class ProgramK {
-        public static void Main() {
+        public static void Mainx() {
             int srvPort = 1234;
             string kanalId = "kanal1";
             IChannel kanal = new TcpClientChannel();
