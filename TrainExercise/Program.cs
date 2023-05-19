@@ -83,8 +83,35 @@ namespace TrainExercise {
             // test enumu
             Engine engine = new Engine(0);
             Locomotive loco = new Locomotive(new Person("Alois", "Jirasek"), engine);
+            EconomyWagon ew = new EconomyWagon(60);
             Train EnumTrain = new Train(loco);
+            EnumTrain.ConnectWagon(ew);
             Console.WriteLine(EnumTrain);
+
+            //// vypis hodnot Enumu
+            //foreach (var item in Enum.GetValues(typeof(Engine.EEngine))) {
+            //    Console.WriteLine(item);
+            //}
+
+            Traveller t1 = new Traveller("Frantisek", "Dobrota", 0);
+            Traveller t2 = new Traveller("Ludek", "Sobota", 100);
+            Traveller t3 = new Traveller("Milada", "Horakova", 50);
+            Traveller t4 = new Traveller("Milada", "Horakova");
+            EnumTrain.ReserveChair(1,1, 614136);
+            EnumTrain.ReserveChair(1,2, 614137);
+            EnumTrain.ReserveChair(1,3, 614138);
+            EnumTrain.ReserveChair(1,1, 614139);
+            Console.WriteLine(Traveller.pocetKaret);
+            Console.WriteLine();
+            Train train3 = train + train2;
+            Console.WriteLine(train3);
+            Console.WriteLine();
+            Train train4 = train3 + EnumTrain;
+            train4.ListReservedChairs();
+            Console.WriteLine("ahpj");
+            Train train5 = train4 - 3;
+            Console.WriteLine(train5);
+
         }
     }
 }

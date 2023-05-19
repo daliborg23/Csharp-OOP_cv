@@ -9,6 +9,7 @@ namespace TrainExercise {
 		private bool nearWindow;
 		private int number;
 		private bool reserved;
+		public int reservedToCardNo;
 		#region properties
 		public bool NearWindow {
 			get { return nearWindow; }

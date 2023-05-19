@@ -39,7 +39,8 @@ namespace TrainExercise {
 				else {
 					Console.WriteLine("Pridan do soupravy " + wagon.ToString());
 					Wagons.Add(wagon);
-				}
+                    Console.WriteLine(Wagons.Count());
+                }
 			}
 			catch (ArgumentNullException e) {
 				Console.WriteLine("Pridani prvniho vagonu za lokomotivu\nPridan do soupravy " + wagon.ToString());
@@ -52,7 +53,7 @@ namespace TrainExercise {
 			Wagons.Remove(wagon);
 		}
 		public void ReserveChair(int cisloWagonu, int seatNumber) {
-			if (Wagons[cisloWagonu] is PersonalWagon) {
+			if (Wagons[cisloWagonu - 1] is PersonalWagon) {
 				if (cisloWagonu <= wagons.Count && cisloWagonu > 0) {
 					if (seatNumber <= ((PersonalWagon)wagons[cisloWagonu - 1]).NumberOfChairs && seatNumber > 0) {
 						if (((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved == false) {
@@ -75,14 +76,39 @@ namespace TrainExercise {
 				Console.WriteLine($"Tohle neni vagon pro cestujici.");
 			}
 		}
-		public void ListReservedChairs() {
+        public void ReserveChair(int cisloWagonu, int seatNumber, int cardNumber) {
+            if (Wagons[cisloWagonu - 1] is PersonalWagon) {
+                if (cisloWagonu <= wagons.Count && cisloWagonu > 0) {
+                    if (seatNumber <= ((PersonalWagon)wagons[cisloWagonu - 1]).NumberOfChairs && seatNumber > 0) {
+                        if (((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved == false) {
+                            ((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved = true;
+							((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].reservedToCardNo = cardNumber;
+                            Console.WriteLine($"Misto c. {seatNumber} ve vagonu {cisloWagonu} bylo rezervovano.");
+                        }
+                        else {
+                            Console.WriteLine("Misto uz nekdo rezervoval");
+                        }
+                    }
+                    else {
+                        Console.WriteLine("Neni misto ve vagonu.");
+                    }
+                }
+                else {
+                    Console.WriteLine("Tak dlouhy vlak neni.");
+                }
+            }
+            else {
+                Console.WriteLine($"Tohle neni vagon pro cestujici.");
+            }
+        }
+        public void ListReservedChairs() {
 			// vypise reservovane sedadla
 			foreach (IConnectable wagon in Wagons) {
 				if (wagon is PersonalWagon) {
 					Console.WriteLine($"Rezervovana mista ve vagonu {wagon.GetType().Name}:");
 					foreach (Chair chair in ((PersonalWagon)wagon).Sits) {
 						if (chair.Reserved == true) {
-							Console.WriteLine($"Pozice: {chair.Number}");
+							Console.WriteLine($"Pozice: {chair.Number} - cislo karty cestovatele - {chair.reservedToCardNo}");
 						}
 					}
 				}
@@ -110,7 +136,30 @@ namespace TrainExercise {
 			// vypis vlaku a vsech vagonu
 			return s;
 		}
-	}
+		public static Train operator +(Train train, Train other) {
+
+			foreach(IConnectable c in other.wagons) {
+				train.ConnectWagon(c);
+			}
+			return train;
+		}
+        //     public static Train operator -(Train train, int pocet) {
+
+        //for (int i = train.Wagons.Count() - 1; i >= train.Wagons.Count() - pocet - 1; --i) {
+        //	train.DisconnectWagon(train.Wagons[i]);
+        //}
+        //         return train;
+        //     }
+        public static Train operator -(Train train, int pocet) {
+
+            for (int i = train.Wagons.Count() - 1; i >= train.Wagons.Count() - pocet - 1; --i) {
+				Console.WriteLine(i) ;
+				train.wagons[i]=;
+               // train.DisconnectWagon(train.Wagons[i]);
+            }
+            return train;
+        }
+    }
 }
 
 
