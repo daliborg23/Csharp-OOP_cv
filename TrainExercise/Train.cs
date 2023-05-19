@@ -23,6 +23,7 @@ namespace TrainExercise {
 		public Train() { }
 		public Train(Locomotive locomotive) {
 			Locomotive = locomotive;
+			Wagons = new List<IConnectable>();
 			// budou se moct pozdeji pripojit vagony?
 		}
 		public Train(Locomotive locomotive, List<IConnectable> listWagonu)
@@ -91,7 +92,7 @@ namespace TrainExercise {
 			string s = string.Empty;
 			s = $"Vlak: {Locomotive}";
 			if (Wagons.Count == 0) {
-				s = " jede sama bez dalsich vagonu";
+				s += " jede sama bez dalsich vagonu";
 				return s;
 			}
 			s += " a pripojenyma vagonama:\n";

@@ -137,7 +137,7 @@ namespace Klient {
             Console.ReadKey();
             objAuthField = objInitField.odautorizuj("test");
 
-            //objAuth = null; // odhlaseni, spis by se mozna hodilo zrusit obejkt na strane serveru?
+            //objAuth = null; // odhlaseni, spis by se mozna hodilo zrusit obejkt na strane serveru? metoda na odhlaseni?
             //Console.WriteLine(objAuth.soucet(1, 1)); =nullref
             try {
                 Console.WriteLine(objAuthField.soucet(1, 1));

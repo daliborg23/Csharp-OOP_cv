@@ -76,6 +76,15 @@ namespace TrainExercise {
             Console.WriteLine(train.ToString());
             Console.WriteLine("-------");
             Console.WriteLine(train2.ToString());
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            // test enumu
+            Engine engine = new Engine(0);
+            Locomotive loco = new Locomotive(new Person("Alois", "Jirasek"), engine);
+            Train EnumTrain = new Train(loco);
+            Console.WriteLine(EnumTrain);
         }
     }
 }

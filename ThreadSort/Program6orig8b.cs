@@ -34,7 +34,7 @@ namespace VlaknaTrideni {
         static bool tEnd4 = false;
         static int t1LoopIndexOut;
         static int t1LoopIndexIn;
-        static int t1LoopIndex;       
+        static int t1LoopIndex;
         static int t1LoopIndexPlusOne;
         static int t2LoopIndexOut;
         static int t2LoopIndexIn;
@@ -128,7 +128,7 @@ namespace VlaknaTrideni {
             t1 = new Thread(bubbleSortSimple); t1.Start();
             t2 = new Thread(bubbleSort); t2.Start();
             t3 = new Thread(bubbleSortOptim); t3.Start();
-            t4 = new Thread(SelectionSort);  t4.Start();
+            t4 = new Thread(SelectionSort); t4.Start();
 
             while (!tEnd1 || !tEnd2 || !tEnd3 || !tEnd4) {
                 form1.showData(t1LoopIndex, t1LoopIndexPlusOne, t1LoopIndexOut, t1LoopIndexIn, "bubbleSortSimple");
@@ -144,7 +144,7 @@ namespace VlaknaTrideni {
             }
 
             // System.Threading.ThreadStateException: 'Thread is not user-suspended; it cannot be resumed.'
-            
+
             Thread.Sleep(10);
             DialogResult dialogResult = MessageBox.Show("Zavrit vse?", "Konec", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.OK) { // Msgbox nevyskakuje do popredi
@@ -194,7 +194,7 @@ namespace VlaknaTrideni {
                     Thread.Sleep(50);
                     indexLoopIn++;
                     t2LoopIndex = j;
-                    t2LoopIndexPlusOne = j+1;
+                    t2LoopIndexPlusOne = j + 1;
                     t2LoopIndexOut = indexLoopOut;
                     t2LoopIndexIn = indexLoopIn;
                     t2WaitOne.Set();
@@ -291,9 +291,9 @@ namespace VlaknaTrideni {
                 }
 
                 if (minIndex != i) {
-                    SwapInts(cisla4,i, minIndex);
+                    SwapInts(cisla4, i, minIndex);
                 }
-                void SwapInts(int[] array, int index ,int min) {
+                void SwapInts(int[] array, int index, int min) {
                     // Swaps elements in an array.
                     int temp = array[index];
                     array[index] = array[min];

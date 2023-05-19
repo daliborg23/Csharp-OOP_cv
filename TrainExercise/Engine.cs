@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace TrainExercise {
     public class Engine {
-        //diesel, elektrická, parní
-        private string type;
-		public  string Type {
+		//diesel, elektrická, parní
+		public enum EEngine { elektricka, diesel, parni };
+
+		private string type;
+		public string Type {
 			get { return type; }
 			set { type = value; }
 		}
-		public Engine(string type) {
+        public Engine(string type) {
 			Type = type;
 		}
+        public Engine(EEngine type) {
+            Type = type.ToString();
+        }
         public override string ToString() {
 			string s = string.Empty;
 			switch (Type) {

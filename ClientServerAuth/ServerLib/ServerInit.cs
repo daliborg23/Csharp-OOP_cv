@@ -28,7 +28,7 @@ namespace ServerLib {
             } while (i < accounts.Count());
             return overeni = null;
         }
-        public ServerInit testSpojeni() {
+        public ServerInit testSpojeni() { //dispose ?
             return this;
         }
         public ServerAuth odautorizuj(string jmeno) {
