@@ -6,28 +6,26 @@ using System.Threading.Tasks;
 
 namespace TrainExercise {
     public class Engine {
-		//diesel, elektrická, parní
 		public enum EEngine { elektricka, diesel, parni };
-
-		private string type;
-		public string Type {
+		private EEngine type;
+		public EEngine Type {
 			get { return type; }
 			set { type = value; }
 		}
-        public Engine(string type) {
-			Type = type;
+        public Engine(int type) {
+			Type = (EEngine)type;
 		}
         public Engine(EEngine type) {
-            Type = type.ToString();
+            Type = type;
         }
         public override string ToString() {
 			string s = string.Empty;
-			switch (Type) {
-				case "diesel":
-					s = "diselovym"; break;
-				case "parni":
+			switch ((int)Type) {
+				case 0:
 					s = "parnim"; break;
-				case "elektricka":
+				case 1:
+					s = "diselovym"; break;
+				case 2:
 					s = "elektrickym"; break;
 				default:
 					s = "NECO JE SPATNE"; break;

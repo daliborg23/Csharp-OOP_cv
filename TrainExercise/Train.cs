@@ -8,10 +8,10 @@ using TrainExercise;
 
 namespace TrainExercise {
 	public class Train {
-		private Locomotive locomotive;
+		private List<Locomotive> locomotive;
 		private List<IConnectable> wagons;
 		#region properties
-		public Locomotive Locomotive {
+		public List<Locomotive> Locomotive {
 			get { return locomotive; }
 			set { locomotive = value; }
 		}
@@ -22,7 +22,7 @@ namespace TrainExercise {
 		#endregion
 		public Train() { }
 		public Train(Locomotive locomotive) {
-			Locomotive = locomotive;
+			Locomotive = new List<Locomotive>() { locomotive };
 			Wagons = new List<IConnectable>();
 			// budou se moct pozdeji pripojit vagony?
 		}
@@ -33,13 +33,13 @@ namespace TrainExercise {
 		public void ConnectWagon(IConnectable wagon) {
 			// parni lokomotiva?
 			try {
-				if (Locomotive.Engine.Type == "parni" && this.Wagons.Count() >= 5) {
-					Console.WriteLine($"Nelze pridat dalsi vagony, chudak lokomotiva s {Locomotive.Engine.ToString()} by to neutahla...");
+				if ((int)Locomotive[0].Engine.Type == 2 && this.Wagons.Count() >= 5) {
+					Console.WriteLine($"Nelze pridat dalsi vagony, chudak lokomotiva s {Locomotive[0].Engine.ToString()} by to neutahla...");
 				}
 				else {
 					Console.WriteLine("Pridan do soupravy " + wagon.ToString());
 					Wagons.Add(wagon);
-                    Console.WriteLine(Wagons.Count());
+                    //Console.WriteLine(Wagons.Count());
                 }
 			}
 			catch (ArgumentNullException e) {
@@ -116,12 +116,16 @@ namespace TrainExercise {
 		}
 		public override string ToString() {
 			string s = string.Empty;
-			s = $"Vlak: {Locomotive}";
+			//s = $"Vlak: {Locomotive}";
+			s = $"======Vlakova souprava:======\n";
+			foreach (Locomotive locomotive in Locomotive) { 
+				s+= locomotive.ToString();
+			}
 			if (Wagons.Count == 0) {
 				s += " jede sama bez dalsich vagonu";
 				return s;
 			}
-			s += " a pripojenyma vagonama:\n";
+			//s += "a pripojenyma vagonama:\n";
 			//foreach (IConnectable w in Wagons) { 
 			//	s += w.ToString() + "\n"; 
 			//}
@@ -137,10 +141,13 @@ namespace TrainExercise {
 			return s;
 		}
 		public static Train operator +(Train train, Train other) {
-
-			foreach(IConnectable c in other.wagons) {
-				train.ConnectWagon(c);
+			foreach (IConnectable c in other.Wagons) {
+				//train.ConnectWagon(c);
+				train.Wagons.Add(c);
 			}
+			other.Wagons.Clear();
+			train.Locomotive.Add(other.Locomotive[0]);
+			other.Locomotive.Remove(other.Locomotive[0]);
 			return train;
 		}
         //     public static Train operator -(Train train, int pocet) {
@@ -151,10 +158,9 @@ namespace TrainExercise {
         //         return train;
         //     }
         public static Train operator -(Train train, int pocet) {
-
-            for (int i = train.Wagons.Count() - 1; i >= train.Wagons.Count() - pocet - 1; --i) {
-				Console.WriteLine(i) ;
-				train.wagons[i]=;
+			int max = train.Wagons.Count();
+            for (int i = max - 1; i > max - pocet - 1; i--) {
+				train.DisconnectWagon(train.Wagons[i]);
                // train.DisconnectWagon(train.Wagons[i]);
             }
             return train;
