@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
@@ -8,6 +10,7 @@ using TrainExercise;
 
 namespace TrainExercise {
     public class Train {
+        private int hash;
         private List<Locomotive> locomotive;
         private List<IConnectable> wagons;
         #region properties
@@ -167,6 +170,9 @@ namespace TrainExercise {
                     }
                 }
             }
+            else {
+                return false;
+            }
             if (train.Wagons.Count() == other.Wagons.Count()) {
                 for (int i = 0; i < train.Wagons.Count(); i++) {
                     if (train.Wagons[i].GetType().Name != other.Wagons[i].GetType().Name) {
@@ -175,28 +181,51 @@ namespace TrainExercise {
                     }
                 }
             }
+            else {
+                return false;
+            }
             Console.WriteLine("Vlaky jsou stejne serazeny. ==");
             return true;
         }
         public static bool operator !=(Train train, Train other) {
             if (train.Locomotive.Count() == other.Locomotive.Count()) {
                 for (int i = 0; i < train.Locomotive.Count(); i++) {
-                    if (train.Locomotive[i].Engine.Type == other.Locomotive[i].Engine.Type) {
-                        Console.WriteLine("Lokomotivy jsou stejne razeny. !=");
-                        return false;
+                    if (train.Locomotive[i].Engine.Type != other.Locomotive[i].Engine.Type) {
+                        Console.WriteLine("Lokomotivy nejsou stejne razeny. !=");
+                        return true;
                     }
                 }
+            }
+            else {
+                return true;
             }
             if (train.Wagons.Count() == other.Wagons.Count()) {
                 for (int i = 0; i < train.Wagons.Count(); i++) {
-                    if (train.Wagons[i].GetType().Name == other.Wagons[i].GetType().Name) {
-                        Console.WriteLine("Vagony jsou stejne razeny. !=");
-                        return false;
+                    if (train.Wagons[i].GetType().Name != other.Wagons[i].GetType().Name) {
+                        Console.WriteLine("Vagony nejsou stejne razeny. !=");
+                        return true;
                     }
                 }
             }
-            Console.WriteLine("Vlaky nejsou stejne serazeny. !=");
-            return true;
+            else {
+                return true;
+            }
+            Console.WriteLine("Vlaky jsou stejne serazeny. !=");
+            return false;
+        }
+        public override bool Equals(Object o) {
+            if (ReferenceEquals(null, o)) return false;
+            if (ReferenceEquals(this, o)) return true;
+            if (o.GetType() != this.GetType()) return false;
+            return false;
+        }
+        public override int GetHashCode() {
+            unchecked // Allow arithmetic overflow, numbers will just "wrap around"
+                {
+                int hashcode = 1430287;
+                hashcode = hashcode * 7302013;
+                return hashcode;
+            }
         }
     }
 }
