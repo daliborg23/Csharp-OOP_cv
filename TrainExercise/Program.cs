@@ -150,6 +150,35 @@ namespace TrainExercise {
             Train train5 = train4 - 3;
             Console.WriteLine("-------      =");
             Console.WriteLine(train5);
+            Console.WriteLine("---------------------");
+            Train eq1 = new Train(new Locomotive(new Person("Bronislav","Cieslar"),new Engine(0)));
+            EconomyWagon eqw1 = new EconomyWagon(30);
+            EconomyWagon eqw2 = new EconomyWagon(30);
+            EconomyWagon eqw3 = new EconomyWagon(30);
+            eq1.Wagons.Add(eqw1);
+            eq1.Wagons.Add(eqw2);
+            eq1.Wagons.Add(eqw3);
+
+            Train eq2 = new Train(new Locomotive(new Person("Miroslav", "Adamik"), new Engine(0)));
+            EconomyWagon eqw4 = new EconomyWagon(30);
+            EconomyWagon eqw5 = new EconomyWagon(30);
+            EconomyWagon eqw6 = new EconomyWagon(30);
+            eq1.Wagons.Add(eqw4);
+            eq1.Wagons.Add(eqw5);
+            eq1.Wagons.Add(eqw6);
+
+            Train eq3 = new Train(new Locomotive(new Person("Tibor", "Makovicky"), new Engine(1)));
+            EconomyWagon eqw7 = new EconomyWagon(30);
+            EconomyWagon eqw8 = new EconomyWagon(30);
+            eq1.Wagons.Add(eqw7);
+            eq1.Wagons.Add(eqw8);
+
+            Console.WriteLine("-------      ==");
+            Console.WriteLine((eq1==eq2) ? "Stejne razene vlaky":"Jinak razene vlaky");
+            Console.WriteLine("-------      !=");
+            Console.WriteLine((eq1!=eq2) ? "Jinak razene vlaky":"Stejne razene vlaky");
+            Console.WriteLine("-------      !=");
+            Console.WriteLine((eq1!=eq3) ? "Jinak razene vlaky":"Stejne razene vlaky");
 
         }
     }
