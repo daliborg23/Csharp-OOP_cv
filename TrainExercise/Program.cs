@@ -53,34 +53,34 @@ namespace TrainExercise {
             //Console.WriteLine("-------");
 
             //// nova lokomotiva s vagony pro cestujici
-            //Locomotive lokoEle = new Locomotive(new Person("Matej", "Michalik"), new Engine(0));
-            //EconomyWagon e1 = new EconomyWagon(50);
-            //EconomyWagon e2 = new EconomyWagon(50);
-            //EconomyWagon e3 = new EconomyWagon(50);
-            //EconomyWagon e4 = new EconomyWagon(50);
-            //EconomyWagon e5 = new EconomyWagon(50);
-            //EconomyWagon e6 = new EconomyWagon(50);
-            //Hopper h7 = new Hopper(37);
-            //List<IConnectable> souprava2 = new List<IConnectable>() { e1, e2, e3, e4, e5, e6, h7 };
-            //Train train2 = new Train(lokoEle, souprava2);
+            // Locomotive lokoEle = new Locomotive(new Person("Matej", "Michalik"), new Engine(0));
+            // EconomyWagon e1 = new EconomyWagon(50);
+            // EconomyWagon e2 = new EconomyWagon(50);
+            // EconomyWagon e3 = new EconomyWagon(50);
+            // EconomyWagon e4 = new EconomyWagon(50);
+            // EconomyWagon e5 = new EconomyWagon(50);
+            // EconomyWagon e6 = new EconomyWagon(50);
+            // Hopper h7 = new Hopper(37);
+            // List<IConnectable> souprava2 = new List<IConnectable>() { e1, e2, e3, e4, e5, e6, h7 };
+            // Train train2 = new Train(lokoEle, souprava2);
 
             //// rezervace mist
-            //((PersonalWagon)train2.Wagons[3]).Sits.Add(new Chair(1,false));
-            //train2.ReserveChair(2, 2);
-            //train2.ReserveChair(3, 3);
-            //train2.ReserveChair(3, 4);
-            //train2.ReserveChair(4, 30);
+            //((PersonalWagon) train2.Wagons[3]).Sits.Add(new Chair(1, false));
+            // train2.ReserveChair(2, 2);
+            // train2.ReserveChair(3, 3);
+            // train2.ReserveChair(3, 4);
+            // train2.ReserveChair(4, 30);
 
-            //train2.ReserveChair(6,1);
-            //Console.WriteLine("------- Rezervace stejneho sedadla");
-            //train2.ReserveChair(2, 2);
-            //Console.WriteLine("-------");
-            //// vypis reservovanych sedadel
-            //train2.ListReservedChairs();
-            //Console.WriteLine("-------");
-            //Console.WriteLine(train.ToString());
-            //Console.WriteLine("-------");
-            //Console.WriteLine(train2.ToString());
+            // train2.ReserveChair(6, 1);
+            // Console.WriteLine("------- Rezervace stejneho sedadla");
+            // train2.ReserveChair(2, 2);
+            // Console.WriteLine("-------");
+            // vypis reservovanych sedadel
+            // train2.ListReservedChairs();
+            // Console.WriteLine("-------");
+            // Console.WriteLine(train.ToString());
+            // Console.WriteLine("-------");
+            // Console.WriteLine(train2.ToString());
 
             //Console.WriteLine();
             //Console.WriteLine();

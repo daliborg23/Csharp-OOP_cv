@@ -86,7 +86,7 @@ namespace TrainExercise {
                         if (((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved == false) {
                             ((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].Reserved = true;
                             ((PersonalWagon)wagons[cisloWagonu - 1]).Sits[seatNumber - 1].reservedToCardNo = cardNumber;
-                            Console.WriteLine($"Misto c. {seatNumber} ve vagonu {cisloWagonu} bylo rezervovano.");
+                            Console.WriteLine($"Misto c. {seatNumber} ve vagonu {cisloWagonu} bylo rezervovano pro c.k. {cardNumber}.");
                         }
                         else {
                             Console.WriteLine("Misto uz nekdo rezervoval");
