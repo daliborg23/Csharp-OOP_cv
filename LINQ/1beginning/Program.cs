@@ -42,9 +42,21 @@ class LINQforBeginners {
 
         List<string> slova = new List<string>() { "kompresor", "krtek", "vzácnost", "herečka", "kapsa", "mnich", 
             "sféra", "víla", "žurnalistika", "popelnice", "oděrka", "lekce", "bidlo", "kartička", "písmeno", 
-            "kartografie", "tribuna", "dítě", "tele", "spona", "záhyb", "sedlo" 
+            "kartografie", "tribuna", "dítě", "tele", "spona", "záhyb", "sedlo"
         };
+        var minAlpha = slova.Min(); // Ascii
+        Console.WriteLine("MinAlpha: " + minAlpha);
 
+        var minLength = slova.Min(c => c.Length);
+        Console.WriteLine("Nejkratsi delka slova: " + minLength);
+
+        var startWithKa = slova.Where(w => w.StartsWith("ka")).ToList();
+        Console.Write("Start with \"ka\": ");
+        foreach (var word in startWithKa)
+        {
+            Console.Write(word + ", ");
+        }
+        Console.WriteLine();
 
     }
 }
