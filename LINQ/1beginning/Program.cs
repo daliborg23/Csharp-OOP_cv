@@ -58,5 +58,19 @@ class LINQforBeginners {
         }
         Console.WriteLine();
 
+        var orderedWords = slova.OrderByDescending(w => w).ToList();
+        Console.Write("Words ordered by Alphabet: ");
+        foreach (var word in orderedWords) {
+            Console.Write(word + ", ");
+        }
+        Console.WriteLine();
+
+        Console.Write("Words ordered by Length: ");
+        var orderedByLength = slova.OrderBy(w => w.Length).ToList();
+        foreach (var word in orderedByLength) {
+            Console.Write(word + ", ");
+        }
+        Console.WriteLine();
+
     }
 }
