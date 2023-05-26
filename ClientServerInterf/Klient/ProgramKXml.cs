@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
@@ -7,22 +8,60 @@ using System.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using ServerInterface;
 
 namespace Klient {
-    public class ProgramKexc {
+    public class ProgramKXml {
         private static IServerAuth objAuthField;
         private static IServerInit objInitField;
-        public static void Mainx() {
+        private static string srvIP;
+        private static int srvPort;
+        private static string name;
+        private static string pwd;
+        public static void Main() {
+            XmlDocument xmlDoc = new XmlDocument();
+            bool xmlOk;
+            do {
+                xmlOk = false;
+                try {
+                    xmlDoc.Load("config.xml");
+                    XmlElement koren = xmlDoc.DocumentElement;
+                    srvIP = koren.SelectSingleNode("server/ip").InnerText;
+                    srvPort = Int32.Parse(koren.SelectSingleNode("server/port").InnerText);
+                    name = koren.SelectSingleNode("uzivatel/jmeno").InnerText;
+                    pwd = koren.SelectSingleNode("uzivatel/heslo").InnerText;
+                    xmlOk = true;
+                }
+                catch (FileNotFoundException e) {
+                    Console.WriteLine("Soubor config.xml neexistuje. " + e.Message);
+                    //throw;
+                }
+                catch (XmlException e) {
+                    Console.WriteLine("Chyba formatu souboru Xml. " + e.Message);
+                    //throw;
+                }
+                catch (NullReferenceException e) {
+                    Console.WriteLine("Chybi pozadovana sekce v souboru Xml. " + e.Message);
+                    //throw;
+                }
+                catch (FormatException e) {
+                    Console.WriteLine("Nesouhlasi format. Cislo je text nebo naopak. " + e.Message);
+                    //throw;
+                }
+                Thread.Sleep(1000);
+                Console.ReadKey();
+            } while (!xmlOk);
+            // <- try catch
             bool spojeni_ok;
             string loading = "";
             int i = 0;
-            int srvPort = 1234;
+            //int srvPort = 1234;
             string kanalId = "kanal1";
             IChannel kanal = new TcpClientChannel();
             ChannelServices.RegisterChannel(kanal, false);
 
-            string srvIP = "127.0.0.1";
+            //string srvIP = "127.0.0.1";
             string srvAdr = "tcp://" + srvIP + ":" + srvPort + "/" + kanalId;
             Console.Write("Pripojovani k: " + srvIP + ":" + srvPort);
             do {
@@ -53,22 +92,22 @@ namespace Klient {
             Console.WriteLine("----Login----"); // login / registrace?
             do {
                 Console.Write("Username: ");
-                string name = Console.ReadLine();
+                //string name = Console.ReadLine();
                 Console.Write("Password: ");
-                char[] psw = new char[20];
+                //char[] psw = new char[20];
                 int j;
-                ConsoleKeyInfo keyinfo = new ConsoleKeyInfo();
-                for (j = 0; j < psw.Length; j++) {
-                    keyinfo = Console.ReadKey(true);
-                    if (!keyinfo.Key.Equals(ConsoleKey.Enter)) {
-                        psw[j] = keyinfo.KeyChar;
-                        Console.Write("*");
-                    }
-                    else {
-                        break;
-                    }
-                }
-                string pwd = new string(psw);
+                //ConsoleKeyInfo keyinfo = new ConsoleKeyInfo();
+                //for (j = 0; j < psw.Length; j++) {
+                //    keyinfo = Console.ReadKey(true);
+                //    if (!keyinfo.Key.Equals(ConsoleKey.Enter)) {
+                //        psw[j] = keyinfo.KeyChar;
+                //        Console.Write("*");
+                //    }
+                //    else {
+                //        break;
+                //    }
+                //}
+                //string pwd = new string(psw);
                 pwd = pwd.TrimEnd('\0');
                 Console.WriteLine("\nZadane heslo: " + pwd);
                 try {

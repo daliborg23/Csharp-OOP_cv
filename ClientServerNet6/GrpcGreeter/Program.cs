@@ -7,8 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Services.AddRazorPages();
 var app = builder.Build();
+app.Logger.LogInformation("Adding Routes");
+app.MapGet("/", () => "Hello World!");
+app.Logger.LogInformation("Starting the app");
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<GreeterService>();

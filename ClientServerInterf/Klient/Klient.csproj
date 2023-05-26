@@ -48,7 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Klient.ProgramKexc</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProgramK.cs" />
+    <Compile Include="ProgramKXml.cs" />
     <Compile Include="ProgramKexc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
